@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Config",
+  "description": "A Warhol configuration object",
+  "type": "object",
+  "properties": {
+    "url": {
+      "description": "The URL to find your components on",
+      "type": "string",
+      "format": "url"
+    },
+    "breakpoints": {
+      "description": "The screen widths with which to take snapshots",
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 100
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "components": {
+      "description": "Component definitions",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceSelector": {
+            "description": "The selector used to find components in the source",
+            "type": "string"
+          },
+          "targetSelector": {
+            "description": "The selector used to find component instances in the page",
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [ "components" ]
+}

@@ -1,0 +1,8 @@
+{
+  "url": "https://google.de/",
+  "breakpoints": [ 800, 1000 ],
+  "components": [
+    { "sourceSelector": ".foo", "targetSelector": ".foo" },
+    { "sourceSelector": ".bar", "targetSelector": ".bar" }
+  ]
+}

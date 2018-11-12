@@ -1,0 +1,32 @@
+{
+  "name": "@warhol/config-file",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "author": "peter@peterkroener.de",
+  "license": "MIT",
+  "scripts": {
+    "ts:lint": "tslint -p .",
+    "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
+    "test": "npx jasmine --config=jasmine.json --require=ts-node/register",
+    "test:dev": "npx nodemon -e ts --watch src --watch test node_modules/.bin/jasmine --config=jasmine.json --require=ts-node/register"
+  },
+  "dependencies": {
+    "ajv": "^6.5.4",
+    "fs-extra": "^7.0.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.4",
+    "@types/jasmine": "^2.8.9",
+    "@types/nock": "^9.3.0",
+    "@types/request-promise-native": "^1.0.15",
+    "@warhol/tsconfig": "^0.2.1",
+    "jasmine": "^3.3.0",
+    "nock": "^10.0.1",
+    "nodemon": "^1.18.5",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.4"
+  }
+}
