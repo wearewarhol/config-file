@@ -14,13 +14,13 @@ export type Component = {
 };
 
 export type Schema = {
-  url: string;
+  styleguideUrl: string;
   breakpoints: number[];
   components: Component[];
 };
 
 export type Configuration = {
-  url: string | null;
+  styleguideUrl: string | null;
   breakpoints: number[];
   components: SelectorComponentMap;
   issues: Array<Issue<any>>;

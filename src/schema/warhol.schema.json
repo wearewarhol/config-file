@@ -4,8 +4,8 @@
   "description": "A Warhol configuration object",
   "type": "object",
   "properties": {
-    "url": {
-      "description": "The URL to find your components on",
+    "styleguideUrl": {
+      "description": "The URL to find your styleguide on",
       "type": "string",
       "format": "url"
     },

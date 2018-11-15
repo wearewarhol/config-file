@@ -1,6 +1,6 @@
 {
   "breakpoints": [800, 1000],
-  "url": "https://google.de/",
+  "styleguideUrl": "https://google.de/",
   "components": [{
     "componentUrl": "https://google.de/",
     "source": ".foo",

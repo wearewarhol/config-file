@@ -11,12 +11,12 @@ export enum ErrorType {
 }
 
 export const getError = (
-  url: string | null,
+  styleguideUrl: string | null,
   type: ErrorType,
   level: ErrorLevel,
   details: any,
 ): Configuration => ({
-  url,
+  styleguideUrl,
   breakpoints: [],
   components: [],
   issues: [{

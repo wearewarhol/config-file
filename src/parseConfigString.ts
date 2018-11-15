@@ -11,7 +11,7 @@ const getSelectorTuple: SelectorTuple = (conf) =>
 
 const getComponentConfiguration = (
   {
-    url,
+    styleguideUrl,
     components: inputComponents,
     breakpoints,
   }: Schema,
@@ -19,7 +19,7 @@ const getComponentConfiguration = (
   const components = inputComponents.map(getSelectorTuple);
 
   return {
-    url,
+    styleguideUrl,
     breakpoints: breakpoints || [ 1000 ],
     components,
     issues: [],
@@ -40,7 +40,7 @@ export const parseConfigString = (
     const isValid = validator(config);
 
     if (!isValid) {
-      return getError(config.url, ErrorType.CONFIG_VALIDATION_ERROR, ErrorLevel.ERROR, {
+      return getError(config.styleguideUrl, ErrorType.CONFIG_VALIDATION_ERROR, ErrorLevel.ERROR, {
         error: validator.errors,
       });
     }
