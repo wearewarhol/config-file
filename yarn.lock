@@ -60,10 +60,10 @@
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-2.3.3.tgz#7f226d67d654ec9070e755f46daebf014628e9d9"
   integrity sha512-MDQLxNFRLasqS4UlkWMSACMKeSm1x4Q3TxzUC7KQUsh6RK1ZrQ0VEyE3yzXcBu+K8ejVj4wuX32eUG02yNp+YQ==
 
-"@warhol/tsconfig@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@warhol/tsconfig/-/tsconfig-0.2.1.tgz#a2f6d2bd60bf9734d20450d489e43f594eec311a"
-  integrity sha512-Js0F3voijJ0Hso9agdJJmdvJwK3k+DQa+8rR/B4kH3s37svmrt7CFc9jDTW/2xo+1W/rhDa2PsU6/WnGwIpNvQ==
+"@warhol/tsconfig@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@warhol/tsconfig/-/tsconfig-1.0.0.tgz#515557a68cf905ee2e2507cc1f4313f49f862f53"
+  integrity sha512-/WRUcNYa7uNWeGvmVf6QP9JzF3oRWJel7T5Qv8lG1TVNXBWWhChQf39upSlG0wi11zMZFUsxoWFXwQnOJAlt+g==
 
 abbrev@1:
   version "1.1.1"

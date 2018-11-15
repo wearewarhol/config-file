@@ -1,7 +1,8 @@
 {
   "name": "@warhol/config-file",
   "version": "0.1.0",
-  "main": "index.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/src/index.d.ts",
   "author": "peter@peterkroener.de",
   "license": "MIT",
   "scripts": {
@@ -21,7 +22,7 @@
     "@types/jasmine": "^2.8.9",
     "@types/nock": "^9.3.0",
     "@types/request-promise-native": "^1.0.15",
-    "@warhol/tsconfig": "^0.2.1",
+    "@warhol/tsconfig": "^1.0.0",
     "jasmine": "^3.3.0",
     "nock": "^10.0.1",
     "nodemon": "^1.18.5",
