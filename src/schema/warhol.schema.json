@@ -25,6 +25,11 @@
       "items": {
         "type": "object",
         "properties": {
+          "componentUrl": {
+            "description": "The URL to find your components on",
+            "type": "string",
+            "format": "url"
+          },
           "source": {
             "description": "The selector used to find components in the source",
             "type": "string"

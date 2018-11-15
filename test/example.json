@@ -2,9 +2,11 @@
   "breakpoints": [800, 1000],
   "url": "https://google.de/",
   "components": [{
+    "componentUrl": "https://google.de/",
     "source": ".foo",
     "target": ".foo"
   }, {
+    "componentUrl": "https://google.de/",
     "source": ".bar",
     "target": ".bar"
   }]
