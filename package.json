@@ -2,7 +2,7 @@
   "name": "@warhol/config-file",
   "version": "0.2.0",
   "main": "dist/cjs/index.js",
-  "types": "dist/types/src/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "author": "peter@peterkroener.de",
   "license": "MIT",
   "scripts": {
