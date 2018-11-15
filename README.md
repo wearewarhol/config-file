@@ -6,6 +6,7 @@ example:
 
 ```json
 {
+  "styleguideUrl": "https://foobar.com/",
   "breakpoints": [
     1280, 1024, 800, 400, 280
   ],
