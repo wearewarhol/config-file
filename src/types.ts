@@ -1,6 +1,5 @@
 export type SelectorComponentMap = Array<[ HTMLElement | string, string ]>;
 
-
 export type Issue <T> = {
   type: string;
   level: string; // "error" | "info"
@@ -13,13 +12,11 @@ export type Component = {
   targetSelector: string;
 };
 
-
 export type Schema = {
   url: string;
   breakpoints: number[];
   components: Component[];
 };
-
 
 export type Configuration = {
   url: string | null;
