@@ -1,5 +1,5 @@
 import * as Ajv from "ajv";
-import * as schema from "../schema/warhol.schema.json";
+import * as schema from "./schema/warhol.schema.json";
 import { Configuration, Schema, Component } from "./types";
 import { getError, ErrorType, ErrorLevel } from "./getError";
 
