@@ -25,11 +25,11 @@
       "items": {
         "type": "object",
         "properties": {
-          "sourceSelector": {
+          "source": {
             "description": "The selector used to find components in the source",
             "type": "string"
           },
-          "targetSelector": {
+          "target": {
             "description": "The selector used to find component instances in the page",
             "type": "string"
           }

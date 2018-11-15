@@ -10,8 +10,8 @@ example:
     1280, 1024, 800, 400, 280
   ],
   "components": [
-    { "sourceSelector": ".foo", "targetSelector": ".foo" },
-    { "sourceSelector": ".bar", "targetSelector": ".bar" }
+    { "source": ".foo", "target": ".foo" },
+    { "source": ".bar", "target": ".bar" }
   ]
 }
 ```

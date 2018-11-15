@@ -11,8 +11,8 @@ describe("valid configs", () => {
     const config = {
       breakpoints: [ 800, 1000 ],
       components: [
-        { sourceSelector: ".foo", targetSelector: ".foo" },
-        { sourceSelector: ".bar", targetSelector: ".bar" },
+        { source: ".foo", target: ".foo" },
+        { source: ".bar", target: ".bar" },
       ],
     };
     const actual = parseConfigString(JSON.stringify(config));
@@ -27,8 +27,8 @@ describe("valid configs", () => {
   it("parses a valid config without the optional breakpoints property", () => {
     const config = {
       components: [
-        { sourceSelector: ".foo", targetSelector: ".foo" },
-        { sourceSelector: ".bar", targetSelector: ".bar" },
+        { source: ".foo", target: ".foo" },
+        { source: ".bar", target: ".bar" },
       ],
     };
     const actual = parseConfigString(JSON.stringify(config));

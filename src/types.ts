@@ -8,8 +8,8 @@ export type Issue <T> = {
 };
 
 export type Component = {
-  sourceSelector: string;
-  targetSelector: string;
+  source: string;
+  target: string;
 };
 
 export type Schema = {

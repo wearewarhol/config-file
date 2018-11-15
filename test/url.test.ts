@@ -7,8 +7,8 @@ nock("http://example.com")
   .reply(200, {
     breakpoints: [ 800, 1000 ],
     components: [
-      { sourceSelector: ".foo", targetSelector: ".foo" },
-      { sourceSelector: ".bar", targetSelector: ".bar" },
+      { source: ".foo", target: ".foo" },
+      { source: ".bar", target: ".bar" },
     ],
   });
 
