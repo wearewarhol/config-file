@@ -6,25 +6,18 @@ import { getError, ErrorType, ErrorLevel } from "./getError";
 const validator = new Ajv().compile(schema as any);
 
 type SelectorTuple = (conf: Component) => [HTMLElement | string, string];
-const getSelectorTuple: SelectorTuple = (conf) =>
-  [conf.source, conf.target];
-
 const getComponentConfiguration = (
   {
     styleguideUrl,
     components: inputComponents,
     breakpoints,
   }: Schema,
-): Configuration => {
-  const components = inputComponents.map(getSelectorTuple);
-
-  return {
-    styleguideUrl,
-    breakpoints: breakpoints || [ 1000 ],
-    components,
-    issues: [],
-  };
-};
+): Configuration => ({
+  styleguideUrl,
+  breakpoints: breakpoints || [ 1000 ],
+  components: inputComponents,
+  issues: [],
+});
 
 export const parseConfigString = (
   input: string,

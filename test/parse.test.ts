@@ -18,8 +18,8 @@ describe("valid configs", () => {
     const actual = parseConfigString(JSON.stringify(config));
     expect(actual.breakpoints).toEqual([ 800, 1000 ]);
     expect(actual.components).toEqual([
-      [ ".foo", ".foo" ],
-      [ ".bar", ".bar" ],
+      { source: ".foo", target: ".foo" },
+      { source: ".bar", target: ".bar" },
     ]);
     expect(actual.issues).toEqual([]);
   });
@@ -34,8 +34,8 @@ describe("valid configs", () => {
     const actual = parseConfigString(JSON.stringify(config));
     expect(actual.breakpoints).toEqual([ 1000 ]);
     expect(actual.components).toEqual([
-      [ ".foo", ".foo" ],
-      [ ".bar", ".bar" ],
+      { source: ".foo", target: ".foo" },
+      { source: ".bar", target: ".bar" },
     ]);
     expect(actual.issues).toEqual([]);
   });

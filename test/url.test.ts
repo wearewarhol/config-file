@@ -7,8 +7,8 @@ nock("http://example.com")
   .reply(200, {
     breakpoints: [ 800, 1000 ],
     components: [
-      { source: ".foo", target: ".foo" },
-      { source: ".bar", target: ".bar" },
+      { componentUrl: "https://google.de/", source: ".foo", target: ".foo" },
+      { componentUrl: "https://google.de/", source: ".bar", target: ".bar" },
     ],
   });
 
@@ -19,8 +19,8 @@ describe("configFromUrl()", () => {
     const actual = await configFromUrl("http://example.com/validConfig.json");
     expect(actual.breakpoints).toEqual([ 800, 1000 ]);
     expect(actual.components).toEqual([
-      [ ".foo", ".foo" ],
-      [ ".bar", ".bar" ],
+      { componentUrl: "https://google.de/", source: ".foo", target: ".foo" },
+      { componentUrl: "https://google.de/", source: ".bar", target: ".bar" },
     ]);
     expect(actual.issues).toEqual([]);
   });

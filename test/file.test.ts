@@ -8,8 +8,8 @@ describe("configFromUrl()", () => {
     expect(typeof actual.styleguideUrl).toEqual("string");
     expect(actual.breakpoints).toEqual([ 800, 1000 ]);
     expect(actual.components).toEqual([
-      [ ".foo", ".foo" ],
-      [ ".bar", ".bar" ],
+      { componentUrl: "https://google.de/", source: ".foo", target: ".foo" },
+      { componentUrl: "https://google.de/", source: ".bar", target: ".bar" },
     ]);
     expect(actual.issues).toEqual([]);
   });
