@@ -10,6 +10,7 @@ export type Component = {
   name?: string;
   source: string;
   target: string;
+  onEvent?: string;
 };
 
 export type Schema = {

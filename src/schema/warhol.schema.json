@@ -41,6 +41,11 @@
           "target": {
             "description": "The selector used to find component instances in the page",
             "type": "string"
+          },
+          "onEvent": {
+            "description": "Event to listen to before collecting snapshots",
+            "type": "string",
+            "default": "DOMContentLoaded"
           }
         }
       }
