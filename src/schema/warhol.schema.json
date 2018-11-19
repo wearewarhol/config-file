@@ -30,6 +30,10 @@
             "type": "string",
             "format": "url"
           },
+          "name": {
+            "description": "The name of the selected component",
+            "type": "string"
+          },
           "source": {
             "description": "The selector used to find components in the source",
             "type": "string"

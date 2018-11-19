@@ -7,6 +7,7 @@ export type Issue <T> = {
 
 export type Component = {
   componentUrl?: string;
+  name?: string;
   source: string;
   target: string;
 };
