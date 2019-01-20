@@ -5,7 +5,6 @@ import { getError, ErrorType, ErrorLevel } from "./getError";
 
 const validator = new Ajv().compile(schema as any);
 
-type SelectorTuple = (conf: Component) => [HTMLElement | string, string];
 const getComponentConfiguration = (
   {
     styleguideUrl,
