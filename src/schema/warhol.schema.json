@@ -19,6 +19,14 @@
       "minItems": 1,
       "uniqueItems": true
     },
+    "colorSources": {
+      "description": "Selectors for elements that define the allowed colors",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0
+    },
     "components": {
       "description": "Component definitions",
       "type": "array",

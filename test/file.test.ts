@@ -11,6 +11,7 @@ describe("configFromUrl()", () => {
       { componentUrl: "https://google.de/", source: ".foo", target: ".foo" },
       { componentUrl: "https://google.de/", source: ".bar", target: ".bar" },
     ]);
+    expect(actual.colorSources).toEqual([ ".swatch > .child", "#foo" ]);
     expect(actual.issues).toEqual([]);
   });
 

@@ -10,12 +10,14 @@ const getComponentConfiguration = (
   {
     styleguideUrl,
     components: inputComponents,
+    colorSources,
     breakpoints,
   }: Schema,
 ): Configuration => ({
   styleguideUrl,
   breakpoints: breakpoints || [ 1000 ],
   components: inputComponents,
+  colorSources,
   issues: [],
 });
 

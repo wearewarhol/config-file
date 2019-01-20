@@ -14,6 +14,25 @@ describe("valid configs", () => {
         { source: ".foo", target: ".foo" },
         { source: ".bar", target: ".bar" },
       ],
+      colorSources: [ ".baz", "#bah" ],
+    };
+    const actual = parseConfigString(JSON.stringify(config));
+    expect(actual.breakpoints).toEqual([ 800, 1000 ]);
+    expect(actual.components).toEqual([
+      { source: ".foo", target: ".foo" },
+      { source: ".bar", target: ".bar" },
+    ]);
+    expect(actual.colorSources).toEqual([ ".baz", "#bah" ]);
+    expect(actual.issues).toEqual([]);
+  });
+
+  it("parses a valid config without the optional colorSources property", () => {
+    const config = {
+      breakpoints: [ 800, 1000 ],
+      components: [
+        { source: ".foo", target: ".foo" },
+        { source: ".bar", target: ".bar" },
+      ],
     };
     const actual = parseConfigString(JSON.stringify(config));
     expect(actual.breakpoints).toEqual([ 800, 1000 ]);

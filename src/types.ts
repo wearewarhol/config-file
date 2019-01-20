@@ -17,11 +17,13 @@ export type Schema = {
   styleguideUrl: string;
   breakpoints: number[];
   components: Component[];
+  colorSources: string[];
 };
 
 export type Configuration = {
   styleguideUrl: string | null;
   breakpoints: number[];
   components: Component[];
+  colorSources: string[];
   issues: Array<Issue<any>>;
 };

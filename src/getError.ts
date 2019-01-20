@@ -19,6 +19,7 @@ export const getError = (
   styleguideUrl,
   breakpoints: [],
   components: [],
+  colorSources: [],
   issues: [{
     type,
     level,

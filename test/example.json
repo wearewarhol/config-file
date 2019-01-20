@@ -1,6 +1,7 @@
 {
   "breakpoints": [800, 1000],
   "styleguideUrl": "https://google.de/",
+  "colorSources": [ ".swatch > .child", "#foo" ],
   "components": [{
     "componentUrl": "https://google.de/",
     "source": ".foo",
