@@ -27,6 +27,27 @@
       },
       "minItems": 0
     },
+    "colorSourceProperties": {
+      "description": "CSS properties to use as sources in the color sources elements",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "background-color",
+          "border-bottom-color",
+          "border-left-color",
+          "border-right-color",
+          "border-top-color",
+          "box-shadow",
+          "color",
+          "lighting-color",
+          "outline-color",
+          "text-decoration-color",
+          "text-shadow"
+        ]
+      },
+      "minItems": 0
+    },
     "components": {
       "description": "Component definitions",
       "type": "array",
@@ -59,5 +80,8 @@
       }
     }
   },
-  "required": [ "components" ]
+  "required": [ "components" ],
+  "dependencies": {
+    "colorSourceProperties": [ "colorSources" ]
+  }
 }

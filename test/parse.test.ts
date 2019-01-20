@@ -15,6 +15,7 @@ describe("valid configs", () => {
         { source: ".bar", target: ".bar" },
       ],
       colorSources: [ ".baz", "#bah" ],
+      colorSourceProperties: [ "color", "background-color" ],
     };
     const actual = parseConfigString(JSON.stringify(config));
     expect(actual.breakpoints).toEqual([ 800, 1000 ]);
@@ -23,6 +24,7 @@ describe("valid configs", () => {
       { source: ".bar", target: ".bar" },
     ]);
     expect(actual.colorSources).toEqual([ ".baz", "#bah" ]);
+    expect(actual.colorSourceProperties).toEqual([ "color", "background-color" ]);
     expect(actual.issues).toEqual([]);
   });
 

@@ -1,6 +1,6 @@
 import * as Ajv from "ajv";
 import * as schema from "./schema/warhol.schema.json";
-import { Configuration, Schema, Component } from "./types";
+import { Configuration, Schema } from "./types";
 import { getError, ErrorType, ErrorLevel } from "./getError";
 
 const validator = new Ajv().compile(schema as any);
@@ -10,13 +10,15 @@ const getComponentConfiguration = (
     styleguideUrl,
     components: inputComponents,
     colorSources,
+    colorSourceProperties,
     breakpoints,
   }: Schema,
 ): Configuration => ({
   styleguideUrl,
   breakpoints: breakpoints || [ 1000 ],
   components: inputComponents,
-  colorSources,
+  colorSources: colorSources || [],
+  colorSourceProperties: colorSourceProperties || [],
   issues: [],
 });
 

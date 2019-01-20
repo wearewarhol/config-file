@@ -20,6 +20,7 @@ export const getError = (
   breakpoints: [],
   components: [],
   colorSources: [],
+  colorSourceProperties: [],
   issues: [{
     type,
     level,

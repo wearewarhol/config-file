@@ -18,6 +18,7 @@ export type Schema = {
   breakpoints: number[];
   components: Component[];
   colorSources: string[];
+  colorSourceProperties: string[];
 };
 
 export type Configuration = {
@@ -25,5 +26,6 @@ export type Configuration = {
   breakpoints: number[];
   components: Component[];
   colorSources: string[];
+  colorSourceProperties: string[];
   issues: Array<Issue<any>>;
 };
