@@ -11,7 +11,7 @@
     "test": "npx jasmine --config=jasmine.json --require=ts-node/register",
     "test:dev": "npx nodemon -e ts --watch src --watch test node_modules/.bin/jasmine --config=jasmine.json --require=ts-node/register",
     "build": "yarn ts:build",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn test && yarn build"
   },
   "dependencies": {
     "ajv": "^6.5.4",
