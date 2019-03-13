@@ -19,43 +19,54 @@
       "minItems": 1,
       "uniqueItems": true
     },
-    "colorSources": {
-      "description": "Selectors for elements that define the allowed colors",
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "minItems": 0
-    },
-    "colorSourceProperties": {
-      "description": "CSS properties to use as sources in the color sources elements",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "background-color",
-          "border-bottom-color",
-          "border-left-color",
-          "border-right-color",
-          "border-top-color",
-          "box-shadow",
-          "color",
-          "lighting-color",
-          "outline-color",
-          "text-decoration-color",
-          "text-shadow"
-        ]
-      },
-      "minItems": 0
+    "theme": {
+      "description": "Theme invariants for the style guide like colors and font sizes",
+      "type": "object",
+      "properties": {
+        "colors": {
+          "description": "Colors allowed in the style guide",
+          "type": "object",
+          "required": [ "sources" ],
+          "properties": {
+            "sources": {
+              "description": "Selector for elements that define the allowed colors",
+              "type": "string"
+            },
+            "properties": {
+              "description": "CSS properties to use as sources in the color sources elements",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "background-color",
+                  "border-bottom-color",
+                  "border-left-color",
+                  "border-right-color",
+                  "border-top-color",
+                  "box-shadow",
+                  "color",
+                  "lighting-color",
+                  "outline-color",
+                  "text-decoration-color",
+                  "text-shadow"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          }
+        }
+      }
     },
     "components": {
       "description": "Component definitions",
       "type": "array",
       "items": {
         "type": "object",
+        "required": [ "source" ],
         "properties": {
           "componentUrl": {
-            "description": "The URL to find your components on",
+            "description": "The URL to find the component on, if different from the main component library url",
             "type": "string",
             "format": "url"
           },
@@ -64,24 +75,16 @@
             "type": "string"
           },
           "source": {
-            "description": "The selector used to find components in the source",
+            "description": "The selector used to find components in the component library or component url",
             "type": "string"
           },
           "target": {
-            "description": "The selector used to find component instances in the page",
+            "description": "The selector used to find component instances in the page, if different from the source selector",
             "type": "string"
-          },
-          "onEvent": {
-            "description": "Event to listen to before collecting snapshots",
-            "type": "string",
-            "default": "DOMContentLoaded"
           }
         }
       }
     }
   },
-  "required": [ "components" ],
-  "dependencies": {
-    "colorSourceProperties": [ "colorSources" ]
-  }
+  "required": [ "components" ]
 }

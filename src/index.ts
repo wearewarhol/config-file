@@ -1,9 +1,3 @@
-export { configFromObject } from "./configFromObject";
-export { parseConfigString } from "./parseConfigString";
-
-export {
-  Issue,
-  Component,
-  Schema,
-  Configuration,
-} from "./types";
+export { fromObject } from "./fromObject";
+export { fromJSON } from "./fromJSON";
+export { Configuration, ComponentConfiguration } from "./types";
