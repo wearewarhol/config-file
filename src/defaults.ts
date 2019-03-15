@@ -77,7 +77,7 @@ export const withDefaults = (input: {
     components: (input.components)
       ? input.components.map( (component) => {
           return {
-            componentUrl: component.componentUrl || null,
+            componentUrl: component.componentUrl || styleguideUrl || null,
             name: component.name || null,
             source: component.source  as string,
             target: component.target || component.source as string,

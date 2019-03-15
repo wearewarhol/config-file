@@ -30,12 +30,12 @@ describe("fromJSON()", () => {
       breakpoints: [ 800, 1000 ],
       components: [{
         name: null,
-        componentUrl: null,
+        componentUrl: "https://example.com/components",
         target: "#hello",
         source: ".foo",
       }, {
         name: null,
-        componentUrl: null,
+        componentUrl: "https://example.com/components",
         target: ".bar",
         source: ".bar",
       }],

@@ -14,12 +14,12 @@ describe("fromObject()", () => {
       breakpoints: [ 1000 ],
       components: [{
         name: null,
-        componentUrl: null,
+        componentUrl: "https://example.com",
         target: ".foo",
         source: ".foo",
       }, {
         name: null,
-        componentUrl: null,
+        componentUrl: "https://example.com",
         target: ".bar",
         source: ".bar",
       }],
@@ -133,7 +133,7 @@ describe("fromObject()", () => {
       },
       components: [{
         name: null,
-        componentUrl: null,
+        componentUrl: "https://warhol.io/components",
         target: ".foo",
         source: ".foo",
       }, {
