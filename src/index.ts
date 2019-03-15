@@ -1,11 +1,8 @@
-export { configFromUrl } from "./configFromUrl";
-export { configFromFile } from "./configFromFile";
-export { configFromObject } from "./configFromObject";
-export { parseConfigString } from "./parseConfigString";
-
+export { fromObject } from "./fromObject";
+export { fromJSON } from "./fromJSON";
 export {
-  Issue,
-  Component,
-  Schema,
   Configuration,
+  ComponentConfiguration,
+  ThemeConfiguration,
+  ThemeColorsConfiguration,
 } from "./types";

@@ -1,31 +1,24 @@
-export type Issue <T> = {
-  type: string;
-  level: string; // "error" | "info"
-  url: string | null;
-  details: T;
-};
+export type ThemeColorsConfiguration = {
+  colorsUrl: string | null;
+  sources: string;
+  properties: string[];
+} | null;
 
-export type Component = {
-  componentUrl?: string;
-  name?: string;
+export type ThemeConfiguration = {
+  themeUrl: string | null;
+  colors: ThemeColorsConfiguration;
+} | null;
+
+export type ComponentConfiguration = {
+  componentUrl: string | null;
+  name: string | null;
   source: string;
   target: string;
-  onEvent?: string;
-};
-
-export type Schema = {
-  styleguideUrl: string;
-  breakpoints: number[];
-  components: Component[];
-  colorSources: string[];
-  colorSourceProperties: string[];
 };
 
 export type Configuration = {
   styleguideUrl: string | null;
   breakpoints: number[];
-  components: Component[];
-  colorSources: string[];
-  colorSourceProperties: string[];
-  issues: Array<Issue<any>>;
+  components: ComponentConfiguration[];
+  theme: ThemeConfiguration;
 };

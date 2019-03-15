@@ -3,6 +3,76 @@
   "title": "Config",
   "description": "A Warhol configuration object",
   "type": "object",
+  "additionalProperties": false,
+  "allOf": [
+    { "$ref": "#/definitions/no-styleguide-url-requires-component-url" },
+    { "$ref": "#/definitions/no-styleguide-url-and-no-theme-url-requires-theme-subsection-url" }
+  ],
+
+  "definitions": {
+
+    "no-styleguide-url-requires-component-url": {
+      "if": {
+        "required": [ "styleguideUrl" ]
+      },
+      "then": {
+        "properties": {
+          "components": {
+            "items": {
+              "required": [ "source" ]
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "components": {
+            "items": {
+              "required": [ "source", "componentUrl" ]
+            }
+          }
+        }
+      }
+    },
+
+    "no-styleguide-url-and-no-theme-url-requires-theme-subsection-url": {
+      "if": {
+        "anyOf": [
+          { "required": [ "styleguideUrl" ] },
+          {
+            "properties": {
+              "theme": {
+                "required": [ "themeUrl" ]
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "theme": {
+            "properties": {
+              "colors": {
+                "required": [ "sources" ]
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "theme": {
+            "properties": {
+              "colors": {
+                "required": [ "sources", "colorsUrl" ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
   "properties": {
     "styleguideUrl": {
       "description": "The URL to find your styleguide on",
@@ -19,43 +89,53 @@
       "minItems": 1,
       "uniqueItems": true
     },
-    "colorSources": {
-      "description": "Selectors for elements that define the allowed colors",
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "minItems": 0
-    },
-    "colorSourceProperties": {
-      "description": "CSS properties to use as sources in the color sources elements",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "background-color",
-          "border-bottom-color",
-          "border-left-color",
-          "border-right-color",
-          "border-top-color",
-          "box-shadow",
-          "color",
-          "lighting-color",
-          "outline-color",
-          "text-decoration-color",
-          "text-shadow"
-        ]
-      },
-      "minItems": 0
+    "theme": {
+      "description": "Theme invariants for the style guide like colors and font sizes",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "themeUrl": {
+          "description": "The URL to find the theme definitions on",
+          "type": "string",
+          "format": "url"
+        },
+        "colors": {
+          "description": "Colors allowed in the style guide",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "colorsUrl": {
+              "description": "The URL to find the color definitions on",
+              "type": "string",
+              "format": "url"
+            },
+            "sources": {
+              "description": "Selector for elements that define the allowed colors",
+              "type": "string"
+            },
+            "properties": {
+              "description": "CSS properties to use as sources in the color sources elements",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [ "background-color", "border-bottom-color", "border-left-color", "border-right-color", "border-top-color", "box-shadow", "color", "lighting-color", "outline-color", "text-decoration-color", "text-shadow" ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          }
+        }
+      }
     },
     "components": {
       "description": "Component definitions",
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "componentUrl": {
-            "description": "The URL to find your components on",
+            "description": "The URL to find the component on, if different from the main component library url",
             "type": "string",
             "format": "url"
           },
@@ -64,24 +144,16 @@
             "type": "string"
           },
           "source": {
-            "description": "The selector used to find components in the source",
+            "description": "The selector used to find components in the component library or component url",
             "type": "string"
           },
           "target": {
-            "description": "The selector used to find component instances in the page",
+            "description": "The selector used to find component instances in the page, if different from the source selector",
             "type": "string"
-          },
-          "onEvent": {
-            "description": "Event to listen to before collecting snapshots",
-            "type": "string",
-            "default": "DOMContentLoaded"
           }
         }
-      }
+      },
+      "minItems": 1
     }
-  },
-  "required": [ "components" ],
-  "dependencies": {
-    "colorSourceProperties": [ "colorSources" ]
   }
 }
