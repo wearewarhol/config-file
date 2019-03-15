@@ -74,15 +74,34 @@ The `colorsUrl` field is required if neither a styleguide URL nor a theme url ha
 Validates a configuration object against the schema described above and fills in
 the default values. Throws a `TypeError` if the object does not conform to the
 schema. The error's `message` property contains a JSON-encoded representation
-of the validation error.
+of the validation error thanks to [better-ajv-errors](https://github.com/atlassian/better-ajv-errors).
+An example:
+
+```json
+[
+  {
+    "start": {
+      "line": 1,
+      "column": 82,
+      "offset": 81
+    },
+    "end": {
+      "line": 1,
+      "column": 86,
+      "offset": 85
+    },
+    "error": "/components/1/source: type should be string",
+    "path": "/components/1/source"
+  }
+]
+```
 
 ### `function fromJSON = (input: string) => Configuration`
 
 Parses a JSON string into an object, validates the object against the schema
 described above and fills in the default values. Throws a `SyntaxError` if the
-input is not valid JSON. Throws a `TypeError` if the object does not conform to
-the schema. The error's `message` property contains a JSON-encoded
-representation of the validation error.
+input is not valid JSON. Throws a `TypeError` like `fromObject()` if the object
+does not conform to the schema.
 
 ### Exported types
 
