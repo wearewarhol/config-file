@@ -11,7 +11,7 @@ describe("schema validation", () => {
       () => fromObject({ components: [{ source: ".foo" }] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
     expect(
-      () => fromObject({ components: [{ source: ".foo", componentUrl: "https://example.com" }] })
+      () => fromObject({ components: [{ source: ".foo", componentUrl: "https://example.com" }] }),
     ).not.toThrow();
   });
 
