@@ -1,6 +1,6 @@
 # Config parser
 
-This module validate project configuration objects or JSON strings and turns
+This module validates project configuration objects or JSON strings and turns
 valid partial configuration objects into full configurations with sensible
 defaults. The file schema is specified in `warhol.schema.json`. An example:
 
