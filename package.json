@@ -13,8 +13,7 @@
     "build": "rm -rf dist/ && tsc -d --declarationDir dist/types -m esnext --outDir dist/esm && tsc -m commonjs --outDir dist/cjs",
     "prepublishOnly": "rm -rf node_modules && yarn install && yarn test && yarn build"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jasmine": "^2.8.9",
     "@warhol/tsconfig": "^1.0.0",
