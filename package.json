@@ -2,16 +2,16 @@
   "name": "@warhol/config-file",
   "version": "1.4.0",
   "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "author": "peter@peterkroener.de",
   "license": "MIT",
   "scripts": {
-    "ts:lint": "tslint -p .",
-    "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
+    "lint": "tslint -p .",
     "test": "ts-node node_modules/.bin/jasmine 'test/*.test.ts'",
     "test:dev": "nodemon --watch src --watch test -e ts --exec 'yarn test'",
-    "build": "yarn ts:build",
-    "prepublishOnly": "yarn test && yarn build"
+    "build": "rm -rf dist/ && tsc -d --declarationDir dist/types -m esnext --outDir dist/esm && tsc -m commonjs --outDir dist/cjs",
+    "prepublishOnly": "rm -rf node_modules && yarn install && yarn test && yarn build"
   },
   "dependencies": {
   },
