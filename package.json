@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "tslint -p .",
     "test": "ts-node node_modules/.bin/jasmine 'test/*.test.ts'",
-    "test:dev": "nodemon --watch src --watch test -e ts --exec 'yarn test'",
+    "test:dev": "nodemon --watch src --watch test -e ts,json --exec 'yarn test'",
     "build": "rm -rf dist/ && tsc -d --declarationDir dist/types -m esnext --outDir dist/esm && tsc -m commonjs --outDir dist/cjs",
     "prepublishOnly": "rm -rf node_modules && yarn install && yarn test && yarn build"
   },

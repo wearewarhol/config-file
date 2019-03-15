@@ -3,12 +3,13 @@ import { fromObject } from "../src/index";
 
 describe("fromObject()", () => {
 
-  it("accepts a minimal configuration containing only minimal component definitions", () => {
+  it("accepts a minimal configuration containing only minimal component definitions and a styleguide url", () => {
     const input = {
+      styleguideUrl: "https://example.com",
       components: [{ source: ".foo" }, { source: ".bar" }],
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: null,
+      styleguideUrl: "https://example.com",
       theme: null,
       breakpoints: [ 1000 ],
       components: [{

@@ -3,6 +3,7 @@
 
 import * as Ajv from "ajv";
 import * as betterAjvErrors from "better-ajv-errors";
+import { Parameter } from "@warhol/utilities";
 import * as schema from "./schema/warhol.schema.json";
 import { withDefaults } from "./defaults";
 import { Configuration } from "./types";
@@ -13,14 +14,14 @@ const validator = new Ajv({ jsonPointers: true }).compile(schema as any);
 // defined by the arguments of the function that can turn it partial configs
 // into full configs.
 export const fromObject = (
-  input: Parameters<typeof withDefaults>["0"],
+  input: Parameter<typeof withDefaults, 0>,
 ): Configuration => {
   const isValid = validator(input);
   if (!isValid) {
     const error = betterAjvErrors(schema, input, validator.errors, {
       format: "js",
     });
-    throw new Error(JSON.stringify(error));
+    throw new TypeError(JSON.stringify(error));
   }
   return withDefaults(input);
 };

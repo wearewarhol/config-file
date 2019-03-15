@@ -67,20 +67,22 @@ export const withDefaults = (input: {
   styleguideUrl?: string | null,
   breakpoints?: number[] | null,
   theme?: MinimalThemeConfig,
-  components: MinimalComponentConfig[],
+  components?: MinimalComponentConfig[],
 }): Configuration => {
   const styleguideUrl = input.styleguideUrl || null;
   return {
     styleguideUrl,
     breakpoints: input.breakpoints || [ 1000 ],
     theme: themeWithDefaults(input.theme, styleguideUrl),
-    components: input.components.map( (component) => {
-      return {
-        componentUrl: component.componentUrl || null,
-        name: component.name || null,
-        source: component.source  as string,
-        target: component.target || component.source as string,
-      };
-    }),
+    components: (input.components)
+      ? input.components.map( (component) => {
+          return {
+            componentUrl: component.componentUrl || null,
+            name: component.name || null,
+            source: component.source  as string,
+            target: component.target || component.source as string,
+          };
+        })
+      : [],
   };
 };
