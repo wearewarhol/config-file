@@ -39,8 +39,10 @@ describe("fromJSON()", () => {
     });
   });
 
-  it("explodes on syntax errors", () => {
-    expect( () => fromJSON(`{{}`) ).toThrow();
+  it("throws syntax errors for invalid input", () => {
+    expect( () => fromJSON(`{{}`) ).toThrow(jasmine.objectContaining({
+      name: "SyntaxError",
+    }));
   });
 
 });

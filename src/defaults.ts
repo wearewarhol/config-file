@@ -1,3 +1,6 @@
+// This module provides functions to fill up partial configuration objects with
+// sensible defaults.
+
 import { ComponentConfiguration, Configuration } from "./types";
 
 const themeWithDefaults = (input: any): Configuration["theme"] => {
