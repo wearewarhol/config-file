@@ -50,7 +50,7 @@ describe("fromObject()", () => {
 
   it("reads a minimal theme color definition", () => {
     const input = {
-      components: [{ source: ".foo" }],
+      components: [{ source: ".foo", componentUrl: "https://asdf.com" }],
       theme: {
         colors: {
           sources: ".swatch",
@@ -68,13 +68,13 @@ describe("fromObject()", () => {
         },
       },
       breakpoints: [ 1000 ],
-      components: [{ name: null, componentUrl: null, source: ".foo", target: ".foo" }],
+      components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
   });
 
   it("reads a full theme color definition", () => {
     const input = {
-      components: [{ source: ".foo" }],
+      components: [{ source: ".foo", componentUrl: "https://asdf.com" }],
       theme: {
         themeUrl: "https://example.com/styleguide/theme",
         colors: {
@@ -95,7 +95,7 @@ describe("fromObject()", () => {
         },
       },
       breakpoints: [ 1000 ],
-      components: [{ name: null, componentUrl: null, source: ".foo", target: ".foo" }],
+      components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
   });
 

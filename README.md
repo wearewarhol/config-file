@@ -27,9 +27,10 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
 
 ## To do
 
-**The schema currently does not enforce that a URL is present for every
-component or theme configuration.** This is supported by JSON schema and should
-be added ASAP.
+**The schema currently does not enforce that a URL is present for every theme
+configuration sub-property.** The url is inherited from `theme.themeUrl` and
+`styleguideUrl`, but if those properties are missing, it is, at the moment,
+still allowed to pass no url to theme sub-properties. This should be disallowed.
 
 ## Schema
 

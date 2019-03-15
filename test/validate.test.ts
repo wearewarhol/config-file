@@ -6,13 +6,13 @@ describe("schema validation", () => {
     expect( () => fromObject({}) ).not.toThrow();
   });
 
-  xit("requires a component url when there's no styleguide url", () => {
+  it("requires a component url when there's no styleguide url", () => {
     expect(
       () => fromObject({ components: [{ source: ".foo" }] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
-  it("requires at least one component", () => {
+  it("requires at least one component if a component list is passed", () => {
     expect(
       () => fromObject({ components: [] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
