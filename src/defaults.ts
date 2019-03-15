@@ -65,7 +65,7 @@ type MinimalComponentConfig = Optional<
 
 export const withDefaults = (input: {
   styleguideUrl?: string | null,
-  breakpoints?: number[] | null,
+  breakpoints?: number[],
   theme?: MinimalThemeConfig,
   components?: MinimalComponentConfig[],
 }): Configuration => {
