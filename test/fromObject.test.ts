@@ -59,7 +59,9 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       styleguideUrl: null,
       theme: {
+        themeUrl: null,
         colors: {
+          colorsUrl: null,
           sources: ".swatch",
           properties: [ "background-color" ],
         },
@@ -73,7 +75,9 @@ describe("fromObject()", () => {
     const input = {
       components: [{ source: ".foo" }],
       theme: {
+        themeUrl: "https://example.com/styleguide/theme",
         colors: {
+          colorsUrl: "https://example.com/styleguide/theme/colors",
           sources: ".swatch",
           properties: [ "background-color", "color" ],
         },
@@ -82,7 +86,9 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       styleguideUrl: null,
       theme: {
+        themeUrl: "https://example.com/styleguide/theme",
         colors: {
+          colorsUrl: "https://example.com/styleguide/theme/colors",
           sources: ".swatch",
           properties: [ "background-color", "color" ],
         },
@@ -97,6 +103,7 @@ describe("fromObject()", () => {
       styleguideUrl: "https://warhol.io/components",
       breakpoints: [ 300, 800, 1200 ],
       theme: {
+        themeUrl: "https://warhol.io/components/theme",
         colors: {
           sources: ".swatch",
           properties: [ "background-color", "color" ],
@@ -116,7 +123,9 @@ describe("fromObject()", () => {
       styleguideUrl: "https://warhol.io/components",
       breakpoints: [ 300, 800, 1200 ],
       theme: {
+        themeUrl: "https://warhol.io/components/theme",
         colors: {
+          colorsUrl: "https://warhol.io/components/theme",
           sources: ".swatch",
           properties: [ "background-color", "color" ],
         },

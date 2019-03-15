@@ -35,6 +35,13 @@
   resolved "https://registry.yarnpkg.com/@warhol/tsconfig/-/tsconfig-1.0.0.tgz#515557a68cf905ee2e2507cc1f4313f49f862f53"
   integrity sha512-/WRUcNYa7uNWeGvmVf6QP9JzF3oRWJel7T5Qv8lG1TVNXBWWhChQf39upSlG0wi11zMZFUsxoWFXwQnOJAlt+g==
 
+"@warhol/utilities@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@warhol/utilities/-/utilities-2.0.0.tgz#59d1c10213409736df1c030760f488e4610b24aa"
+  integrity sha512-SMDzCsmgEXdrO/PIScLlFuVpFTDI91KcnWnTQmCs0e2s+JM2YNunkPyqMOFeI0rD2L6MyutSMZ/LrlPn9FbcSQ==
+  dependencies:
+    object-hash "^1.3.1"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1363,6 +1370,11 @@ object-copy@^0.1.0:
     copy-descriptor "^0.1.0"
     define-property "^0.2.5"
     kind-of "^3.0.3"
+
+object-hash@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-1.3.1.tgz#fde452098a951cb145f039bb7d455449ddc126df"
+  integrity sha512-OSuu/pU4ENM9kmREg0BdNrUDIl1heYa4mBZacJc+vVWz4GtAwu7jO8s4AIt2aGRUTqxykpWzI3Oqnsm13tTMDA==
 
 object-visit@^1.0.0:
   version "1.0.1"

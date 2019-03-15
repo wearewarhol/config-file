@@ -23,11 +23,21 @@
       "description": "Theme invariants for the style guide like colors and font sizes",
       "type": "object",
       "properties": {
+        "themeUrl": {
+          "description": "The URL to find the theme definitions on",
+          "type": "string",
+          "format": "url"
+        },
         "colors": {
           "description": "Colors allowed in the style guide",
           "type": "object",
           "required": [ "sources" ],
           "properties": {
+            "colorsUrl": {
+              "description": "The URL to find the color definitions on",
+              "type": "string",
+              "format": "url"
+            },
             "sources": {
               "description": "Selector for elements that define the allowed colors",
               "type": "string"
