@@ -52,6 +52,7 @@ describe("fromObject()", () => {
     const input = {
       components: [{ source: ".foo", componentUrl: "https://asdf.com" }],
       theme: {
+        themeUrl: "https://asdf.com/theme",
         colors: {
           sources: ".swatch",
         },
@@ -60,9 +61,9 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       styleguideUrl: null,
       theme: {
-        themeUrl: null,
+        themeUrl: "https://asdf.com/theme",
         colors: {
-          colorsUrl: null,
+          colorsUrl: "https://asdf.com/theme",
           sources: ".swatch",
           properties: [ "background-color" ],
         },

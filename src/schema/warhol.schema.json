@@ -5,7 +5,8 @@
   "type": "object",
   "additionalProperties": false,
   "allOf": [
-    { "$ref": "#/definitions/no-styleguide-url-requires-component-url" }
+    { "$ref": "#/definitions/no-styleguide-url-requires-component-url" },
+    { "$ref": "#/definitions/no-styleguide-url-and-no-theme-url-requires-theme-subsection-url" }
   ],
 
   "definitions": {
@@ -28,6 +29,43 @@
           "components": {
             "items": {
               "required": [ "source", "componentUrl" ]
+            }
+          }
+        }
+      }
+    },
+
+    "no-styleguide-url-and-no-theme-url-requires-theme-subsection-url": {
+      "if": {
+        "anyOf": [
+          { "required": [ "styleguideUrl" ] },
+          {
+            "properties": {
+              "theme": {
+                "required": [ "themeUrl" ]
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "theme": {
+            "properties": {
+              "colors": {
+                "required": [ "sources" ]
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "theme": {
+            "properties": {
+              "colors": {
+                "required": [ "sources", "colorsUrl" ]
+              }
             }
           }
         }
@@ -65,7 +103,6 @@
           "description": "Colors allowed in the style guide",
           "type": "object",
           "additionalProperties": false,
-          "required": [ "sources" ],
           "properties": {
             "colorsUrl": {
               "description": "The URL to find the color definitions on",

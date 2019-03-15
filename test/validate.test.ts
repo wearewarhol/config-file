@@ -10,6 +10,9 @@ describe("schema validation", () => {
     expect(
       () => fromObject({ components: [{ source: ".foo" }] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
+      () => fromObject({ components: [{ source: ".foo", componentUrl: "https://example.com" }] })
+    ).not.toThrow();
   });
 
   it("requires at least one component if a component list is passed", () => {
@@ -18,7 +21,7 @@ describe("schema validation", () => {
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
-  xit("requires a color url when there's no styleguide oder theme url", () => {
+  it("requires a color url when there's no styleguide oder theme url", () => {
     expect(
       () => fromObject({
         theme: {
@@ -26,7 +29,6 @@ describe("schema validation", () => {
             sources: ".swatch",
           },
         },
-        components: [{ source: ".foo" }],
       }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });

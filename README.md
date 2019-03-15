@@ -25,19 +25,14 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
 }
 ```
 
-## To do
-
-**The schema currently does not enforce that a URL is present for every theme
-configuration sub-property.** The url is inherited from `theme.themeUrl` and
-`styleguideUrl`, but if those properties are missing, it is, at the moment,
-still allowed to pass no url to theme sub-properties. This should be disallowed.
-
 ## Schema
 
 ### Field `styleguideUrl` (optional, `string` or `null`, defaults to `null`)
 
 URL for the styleguide's main page, if any. Can be overruled for each component
-and theme configuration with their own URLs.
+and theme configuration with their own URLs. If the styleguide URL is not
+specified, components and themes (or sub-sections of themes) *must* provide
+their own URLs.
 
 ### Field `breakpoints` (optional, `number[]` or, defaults to `[ 1000 ]`)
 
@@ -52,7 +47,7 @@ following fields:
   * `source` (`string`, required): source selector
   * `target` (`string`, optional): target selector, defaults to the source selector
   * `name` (`string` or `null`, optional): component name, defaults to `null`
-  * `componentUrl` (`string` or `null`, optional): this component's own URL, defaults to the styleguide URL
+  * `componentUrl` (`string` or `null`, optional *or required* depending on the styleguide URL): this component's own URL, defaults to the styleguide URL. If no styleguide URL was specified, this field is required for each component.
 
 ### Field `theme` (optional, `object`, defaults to `null`)
 
@@ -66,9 +61,11 @@ Theme URL, can be overruled by the URLs specified in the theme's sub-properties.
 
 Configuration for theme colors with the following fields:
 
-  * `colorsUrl` (optional, `string`, defaults to the theme or styleguide URL): the url for the color sources
-  * `sources (required, `string`)`: selector for color source elements
-  * `properties` (optional, enum of css color properties, defaults to `[ "background-color" ]`): configures the css properties to use as a color source
+  * `sources` (`string`, required): selector for color source elements
+  * `properties` (enum of css color properties, optional, defaults to `[ "background-color" ]`): configures the css properties to use as a color source. CSS shorthand properties are not allowed.
+  * `colorsUrl` (`string`, optional *or required* depending on the theme and styleguide URLs, defaults to the theme or styleguide URL): the url for the color sources
+
+The `colorsUrl` field is required if neither a styleguide URL nor a theme url have been specified.
 
 ## JavaScript API
 
