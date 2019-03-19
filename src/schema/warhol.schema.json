@@ -77,7 +77,7 @@
     "styleguideUrl": {
       "description": "The URL to find your styleguide on",
       "type": "string",
-      "format": "url"
+      "format": "uri"
     },
     "breakpoints": {
       "description": "The screen widths with which to take snapshots",
@@ -97,7 +97,7 @@
         "themeUrl": {
           "description": "The URL to find the theme definitions on",
           "type": "string",
-          "format": "url"
+          "format": "uri"
         },
         "colors": {
           "description": "Colors allowed in the style guide",
@@ -107,7 +107,7 @@
             "colorsUrl": {
               "description": "The URL to find the color definitions on",
               "type": "string",
-              "format": "url"
+              "format": "uri"
             },
             "sources": {
               "description": "Selector for elements that define the allowed colors",
@@ -137,7 +137,7 @@
           "componentUrl": {
             "description": "The URL to find the component on, if different from the main component library url",
             "type": "string",
-            "format": "url"
+            "format": "uri"
           },
           "name": {
             "description": "The name of the selected component",
