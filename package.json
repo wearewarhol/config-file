@@ -13,13 +13,14 @@
     "build": "rm -rf dist/ && tsc -d --declarationDir dist/types -m esnext --outDir dist/esm && tsc -m commonjs --outDir dist/cjs",
     "prepublishOnly": "rm -rf node_modules && yarn install && yarn test && yarn build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ajv": "^6.5.4",
+    "better-ajv-errors": "^0.6.1"
+  },
   "devDependencies": {
     "@types/jasmine": "^2.8.9",
     "@warhol/tsconfig": "^1.0.0",
     "@warhol/utilities": "^2.0.0",
-    "ajv": "^6.5.4",
-    "better-ajv-errors": "^0.6.1",
     "jasmine": "^3.3.0",
     "nodemon": "^1.18.5",
     "ts-node": "^7.0.1",
