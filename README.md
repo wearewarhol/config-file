@@ -44,9 +44,9 @@ for the components are taken.
 List of component definitions. A component definiton is an object with the
 following fields:
 
-  * `source` (`string`, required): source selector
-  * `target` (`string`, optional): target selector, defaults to the source selector
-  * `name` (`string` or `null`, optional): component name, defaults to `null`
+  * `source` (`string`, required, non-empty): source selector
+  * `target` (`string`, optional, non-empty): target selector, defaults to the source selector
+  * `name` (`string` or `null`, optional, non-empty): component name, defaults to `null`
   * `componentUrl` (`string` or `null`, optional *or required* depending on the styleguide URL): this component's own URL, defaults to the styleguide URL. If no styleguide URL was specified, this field is required for each component.
 
 ### Field `theme` (optional, `object`, defaults to `null`)
@@ -61,7 +61,7 @@ Theme URL, can be overruled by the URLs specified in the theme's sub-properties.
 
 Configuration for theme colors with the following fields:
 
-  * `sources` (`string`, required): selector for color source elements
+  * `sources` (`string`, required, non-empty): selector for color source elements
   * `properties` (enum of css color properties, optional, defaults to `[ "background-color" ]`): configures the css properties to use as a color source. CSS shorthand properties are not allowed.
   * `colorsUrl` (`string`, optional *or required* depending on the theme and styleguide URLs, defaults to the theme or styleguide URL): the url for the color sources
 
