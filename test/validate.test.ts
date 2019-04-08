@@ -21,12 +21,37 @@ describe("schema validation", () => {
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
+  it("does not accept empty selector strings or names on components", () => {
+    expect(
+      () => fromObject({ styleguideUrl: "http://example.com", components: [{ source: "" }] }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
+      () => fromObject({ styleguideUrl: "http://example.com", components: [{ source: "a", target: "" }] }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
+      () => fromObject({ styleguideUrl: "http://example.com", components: [{ source: "a", target: "b", name: "" }] }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
   it("requires a color url when there's no styleguide oder theme url", () => {
     expect(
       () => fromObject({
         theme: {
           colors: {
             sources: ".swatch",
+          },
+        },
+      }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
+  it("does not accept an empty color element selector string", () => {
+    expect(
+      () => fromObject({
+        styleguideUrl: "http://example.com",
+        theme: {
+          colors: {
+            sources: "",
           },
         },
       }),

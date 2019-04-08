@@ -111,7 +111,8 @@
             },
             "sources": {
               "description": "Selector for elements that define the allowed colors",
-              "type": "string"
+              "type": "string",
+              "minLength": 1
             },
             "properties": {
               "description": "CSS properties to use as sources in the color sources elements",
@@ -141,15 +142,18 @@
           },
           "name": {
             "description": "The name of the selected component",
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "source": {
             "description": "The selector used to find components in the component library or component url",
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "target": {
             "description": "The selector used to find component instances in the page, if different from the source selector",
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         }
       },
