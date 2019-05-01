@@ -10,10 +10,11 @@
     "lint": "tslint -p .",
     "test": "ts-node node_modules/.bin/jasmine 'test/*.test.ts'",
     "test:dev": "nodemon --watch src --watch test -e ts,json --exec 'yarn test'",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist && rm -rf temp",
+    "copy": "cp -r src/schema dist/cjs && cp -r src/schema dist/esm",
     "build:ts": "tsc -d --declarationDir dist/types -m esnext --outDir temp/esm && tsc -m commonjs --outDir temp/cjs",
     "build:babel": "babel temp --out-dir dist",
-    "build": "yarn clean && yarn build:ts && yarn build:babel && rm -rf temp",
+    "build": "yarn clean && yarn build:ts && yarn build:babel && yarn copy && rm -rf temp",
     "prepublishOnly": "rm -rf node_modules && yarn install && yarn test && yarn build"
   },
   "dependencies": {
