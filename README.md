@@ -15,6 +15,11 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
       "colorsUrl": "https://foo.com/components/colors",
       "sources": ".swatch",
       "properties": [ "background-color", "color" ]
+    },
+    "typography": {
+      "colorsUrl": "https://foo.com/components/typography",
+      "sources": ".typo",
+      "properties": [ "font-family", "font-size", "font-weight", "font-style" ]
     }
   },
   "components": [
@@ -51,7 +56,7 @@ following fields:
 
 ### Field `theme` (optional, `object`, defaults to `null`)
 
-Theme configuration for colors and such.
+Theme configuration for colors, typography and such.
 
 ### Field `theme.url` (optional, `string`, defaults to the styleguide URL)
 
@@ -62,10 +67,20 @@ Theme URL, can be overruled by the URLs specified in the theme's sub-properties.
 Configuration for theme colors with the following fields:
 
   * `sources` (`string`, required, non-empty): selector for color source elements
-  * `properties` (enum of css color properties, optional, defaults to `[ "background-color" ]`): configures the css properties to use as a color source. CSS shorthand properties are not allowed.
+  * `properties` (enum of css color properties, optional, defaults to `[ "background-color" ]`): configures the css properties to use as a color source. CSS shorthand properties like `background` are not allowed.
   * `colorsUrl` (`string`, optional *or required* depending on the theme and styleguide URLs, defaults to the theme or styleguide URL): the url for the color sources
 
 The `colorsUrl` field is required if neither a styleguide URL nor a theme url have been specified.
+
+### Field `theme.typography` (optional, `object`, defaults to `null`)
+
+Configuration for theme typography with the following fields:
+
+  * `sources` (`string`, required, non-empty): selector for elements that contain typography examples
+  * `properties` (list of css color properties, optional, defaults to `[ "font-family", "font-size", "font-weight", "font-style" ]`): configures the css properties that define a typography example. CSS shorthand properties like `font` are not allowed.
+  * `typographyUrl` (`string`, optional *or required* depending on the theme and styleguide URLs, defaults to the theme or styleguide URL): the url for the typography examples
+
+The `typographyUrl` field is required if neither a styleguide URL nor a theme url have been specified.
 
 ## JavaScript API
 
