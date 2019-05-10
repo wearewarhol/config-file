@@ -4,9 +4,16 @@ export type ThemeColorsConfiguration = {
   properties: string[];
 } | null;
 
+export type ThemeTypographyConfiguration = {
+  typographyUrl: string | null;
+  sources: string;
+  properties: string[];
+} | null;
+
 export type ThemeConfiguration = {
   themeUrl: string | null;
   colors: ThemeColorsConfiguration;
+  typography: ThemeTypographyConfiguration;
 } | null;
 
 export type ComponentConfiguration = {

@@ -67,6 +67,7 @@ describe("fromObject()", () => {
           sources: ".swatch",
           properties: [ "background-color" ],
         },
+        typography: null,
       },
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
@@ -94,6 +95,61 @@ describe("fromObject()", () => {
           sources: ".swatch",
           properties: [ "background-color", "color" ],
         },
+        typography: null,
+      },
+      breakpoints: [ 1000 ],
+      components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
+    });
+  });
+
+  it("reads a minimal theme typography definition", () => {
+    const input = {
+      components: [{ source: ".foo", componentUrl: "https://asdf.com" }],
+      theme: {
+        themeUrl: "https://asdf.com/theme",
+        typography: {
+          sources: ".typo",
+        },
+      },
+    };
+    expect(fromObject(input)).toEqual({
+      styleguideUrl: null,
+      theme: {
+        themeUrl: "https://asdf.com/theme",
+        colors: null,
+        typography: {
+          typographyUrl: "https://asdf.com/theme",
+          sources: ".typo",
+          properties: [ "font-family", "font-size", "font-weight", "font-style" ],
+        },
+      },
+      breakpoints: [ 1000 ],
+      components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
+    });
+  });
+
+  it("reads a full theme typography definition", () => {
+    const input = {
+      components: [{ source: ".foo", componentUrl: "https://asdf.com" }],
+      theme: {
+        themeUrl: "https://example.com/styleguide/theme",
+        typography: {
+          typographyUrl: "https://example.com/styleguide/theme/typography",
+          sources: ".typo",
+          properties: [ "font-family", "font-size", "font-weight", "font-style", "color" ],
+        },
+      },
+    };
+    expect(fromObject(input)).toEqual({
+      styleguideUrl: null,
+      theme: {
+        themeUrl: "https://example.com/styleguide/theme",
+        colors: null,
+        typography: {
+          typographyUrl: "https://example.com/styleguide/theme/typography",
+          sources: ".typo",
+          properties: [ "font-family", "font-size", "font-weight", "font-style", "color" ],
+        },
       },
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
@@ -109,6 +165,10 @@ describe("fromObject()", () => {
         colors: {
           sources: ".swatch",
           properties: [ "background-color", "color" ],
+        },
+        typography: {
+          typographyUrl: "https://warhol.io/components/theme/typography",
+          sources: ".typo",
         },
       },
       components: [
@@ -130,6 +190,11 @@ describe("fromObject()", () => {
           colorsUrl: "https://warhol.io/components/theme",
           sources: ".swatch",
           properties: [ "background-color", "color" ],
+        },
+        typography: {
+          typographyUrl: "https://warhol.io/components/theme/typography",
+          sources: ".typo",
+          properties: [ "font-family", "font-size", "font-weight", "font-style" ],
         },
       },
       components: [{

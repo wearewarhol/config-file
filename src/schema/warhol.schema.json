@@ -54,6 +54,9 @@
             "properties": {
               "colors": {
                 "required": [ "sources" ]
+              },
+              "typography": {
+                "required": [ "sources" ]
               }
             }
           }
@@ -65,6 +68,9 @@
             "properties": {
               "colors": {
                 "required": [ "sources", "colorsUrl" ]
+              },
+              "typography": {
+                "required": [ "sources", "typographyUrl" ]
               }
             }
           }
@@ -120,6 +126,33 @@
               "items": {
                 "type": "string",
                 "enum": [ "background-color", "border-bottom-color", "border-left-color", "border-right-color", "border-top-color", "box-shadow", "color", "lighting-color", "outline-color", "text-decoration-color", "text-shadow" ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          }
+        },
+        "typography": {
+          "description": "Typography examples for the style guide",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "typographyUrl": {
+              "description": "The URL to find the typography examples on",
+              "type": "string",
+              "format": "uri"
+            },
+            "sources": {
+              "description": "Selector for elements that contain typography examples",
+              "type": "string",
+              "minLength": 1
+            },
+            "properties": {
+              "description": "CSS properties that define a typography example",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
               },
               "minItems": 1,
               "uniqueItems": true

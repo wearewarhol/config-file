@@ -58,4 +58,57 @@ describe("schema validation", () => {
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
+  it("does not accept an empty list of color properties", () => {
+    expect(
+      () => fromObject({
+        styleguideUrl: "http://example.com",
+        theme: {
+          colors: {
+            sources: ".swatch",
+            properties: [],
+          },
+        },
+      }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
+  it("requires a typography url when there's no styleguide oder theme url", () => {
+    expect(
+      () => fromObject({
+        theme: {
+          typography: {
+            sources: ".typo",
+          },
+        },
+      }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
+  it("does not accept an empty typography element selector string", () => {
+    expect(
+      () => fromObject({
+        styleguideUrl: "http://example.com",
+        theme: {
+          typography: {
+            sources: "",
+          },
+        },
+      }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
+  it("does not accept an empty list of typography properties", () => {
+    expect(
+      () => fromObject({
+        styleguideUrl: "http://example.com",
+        theme: {
+          typography: {
+            sources: ".typo",
+            properties: [],
+          },
+        },
+      }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
 });

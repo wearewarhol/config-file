@@ -8,30 +8,54 @@ import {
   ComponentConfiguration,
   ThemeConfiguration,
   ThemeColorsConfiguration,
+  ThemeTypographyConfiguration,
 } from "./types";
 
-// The color configuration is optional, nullable and "colorsUrl" and
-// "properties" are optional with the url being cascaded from the rest of the
-// config and the properties defaulting to some built-in value
+// Each of the sub properties of theme configuration is optional, nullable and
+// its URL and properties are optional with the url being cascaded from the rest
+// of the config and the properties defaulting to some built-in value
 type MinimalColorsConfig =
   Optional<NonNullable<ThemeColorsConfiguration>, "colorsUrl" | "properties">
     | null
     | undefined;
+type MinimalTypographyConfig =
+  Optional<NonNullable<ThemeTypographyConfiguration>, "typographyUrl" | "properties">
+    | null
+    | undefined;
 
 const colorsWithDefaults = (
-  inputColors: MinimalColorsConfig,
+  input: MinimalColorsConfig,
   themeUrl: string | null,
 ): ThemeColorsConfiguration => {
-  if (!inputColors || !inputColors.sources) {
+  if (!input || !input.sources) {
     return null;
   } else {
     const properties =
-      (inputColors.properties && inputColors.properties.length > 0)
-        ? inputColors.properties
+      (input.properties && input.properties.length > 0)
+        ? input.properties
         : [ "background-color" ];
     return {
-      colorsUrl: inputColors.colorsUrl || themeUrl,
-      sources: inputColors.sources,
+      colorsUrl: input.colorsUrl || themeUrl,
+      sources: input.sources,
+      properties,
+    };
+  }
+};
+
+const typographyWithDefaults = (
+  input: MinimalTypographyConfig,
+  themeUrl: string | null,
+): ThemeTypographyConfiguration => {
+  if (!input || !input.sources) {
+    return null;
+  } else {
+    const properties =
+      (input.properties && input.properties.length > 0)
+        ? input.properties
+        : [ "font-family", "font-size", "font-weight", "font-style" ];
+    return {
+      typographyUrl: input.typographyUrl || themeUrl,
+      sources: input.sources,
       properties,
     };
   }
@@ -41,6 +65,7 @@ const colorsWithDefaults = (
 type MinimalThemeConfig = {
   themeUrl?: string | null;
   colors?: MinimalColorsConfig;
+  typography?: MinimalTypographyConfig;
 } | null | undefined;
 
 const themeWithDefaults = (
@@ -54,7 +79,8 @@ const themeWithDefaults = (
       ? inputTheme.themeUrl || styleguideUrl || null
       : styleguideUrl || null;
     const colors = colorsWithDefaults(inputTheme.colors, themeUrl);
-    return { themeUrl, colors };
+    const typography = typographyWithDefaults(inputTheme.typography, themeUrl);
+    return { themeUrl, colors, typography };
   }
 };
 

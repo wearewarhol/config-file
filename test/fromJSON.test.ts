@@ -14,6 +14,10 @@ describe("fromJSON()", () => {
         "colors": {
           "sources": ".swatch",
           "properties": [ "background-color", "color" ]
+        },
+        "typography": {
+          "sources": ".typo",
+          "properties": [ "font-family", "font-size", "font-style", "font-weight", "color" ]
         }
       }
     }`;
@@ -25,6 +29,11 @@ describe("fromJSON()", () => {
           colorsUrl: "https://example.com/components",
           sources: ".swatch",
           properties: [ "background-color", "color" ],
+        },
+        typography: {
+          typographyUrl: "https://example.com/components",
+          sources: ".typo",
+          properties: [ "font-family", "font-size", "font-style", "font-weight", "color" ],
         },
       },
       breakpoints: [ 800, 1000 ],
