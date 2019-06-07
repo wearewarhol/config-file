@@ -12,14 +12,19 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
   ],
   "theme": {
     "colors": {
-      "colorsUrl": "https://foo.com/components/colors",
+      "colorsUrl": "https://foo.com/components/theme/colors",
       "sources": ".swatch",
       "properties": [ "background-color", "color" ]
     },
     "typography": {
-      "colorsUrl": "https://foo.com/components/typography",
+      "colorsUrl": "https://foo.com/components/theme/typography",
       "sources": ".typo",
       "properties": [ "font-family", "font-size", "font-weight", "font-style" ]
+    },
+    "icons": {
+      "iconsUrl": "https://foo.com/components/theme/icons",
+      "sources": ".icon",
+      "isFont": true
     }
   },
   "components": [
@@ -82,6 +87,16 @@ Configuration for theme typography with the following fields:
 
 The `typographyUrl` field is required if neither a styleguide URL nor a theme url have been specified.
 
+### Field `theme.icons` (optional, `object`, defaults to `null`)
+
+Configuration for theme icons with the following fields:
+
+  * `sources` (`string`, required, non-empty): selector for elements that contain icons
+  * `iconsUrl` (`string`, optional *or required* depending on the theme and styleguide URLs, defaults to the theme or styleguide URL): the url for the icon examples
+  * `isFont` (`boolean`, required, non-empty): defines if icons are created using an icon font
+
+The `iconsUrl` field is required if neither a styleguide URL nor a theme url have been specified.
+
 ## JavaScript API
 
 ### `function fromObject = (input: PartialConfiguration) => Configuration`
@@ -124,3 +139,5 @@ does not conform to the schema.
 * `ComponentConfiguration`
 * `ThemeConfiguration`
 * `ThemeColorsConfiguration`
+* `ThemeTypographyConfiguration`
+* `ThemeIconsConfiguration`

@@ -18,6 +18,10 @@ describe("fromJSON()", () => {
         "typography": {
           "sources": ".typo",
           "properties": [ "font-family", "font-size", "font-style", "font-weight", "color" ]
+        },
+        "icons": {
+          "sources": ".icon",
+          "isFont": true
         }
       }
     }`;
@@ -34,6 +38,11 @@ describe("fromJSON()", () => {
           typographyUrl: "https://example.com/components",
           sources: ".typo",
           properties: [ "font-family", "font-size", "font-style", "font-weight", "color" ],
+        },
+        icons: {
+          iconsUrl: "https://example.com/components",
+          sources: ".icon",
+          isFont: true,
         },
       },
       breakpoints: [ 800, 1000 ],

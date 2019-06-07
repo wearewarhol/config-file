@@ -5,4 +5,6 @@ export {
   ComponentConfiguration,
   ThemeConfiguration,
   ThemeColorsConfiguration,
+  ThemeTypographyConfiguration,
+  ThemeIconsConfiguration,
 } from "./types";

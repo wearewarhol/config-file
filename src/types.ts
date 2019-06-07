@@ -10,10 +10,17 @@ export type ThemeTypographyConfiguration = {
   properties: string[];
 } | null;
 
+export type ThemeIconsConfiguration = {
+  iconsUrl: string | null;
+  sources: string;
+  isFont: boolean;
+} | null;
+
 export type ThemeConfiguration = {
   themeUrl: string | null;
   colors: ThemeColorsConfiguration;
   typography: ThemeTypographyConfiguration;
+  icons: ThemeIconsConfiguration;
 } | null;
 
 export type ComponentConfiguration = {

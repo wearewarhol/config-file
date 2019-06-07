@@ -57,6 +57,9 @@
               },
               "typography": {
                 "required": [ "sources" ]
+              },
+              "icons": {
+                "required": [ "sources" ]
               }
             }
           }
@@ -71,6 +74,9 @@
               },
               "typography": {
                 "required": [ "sources", "typographyUrl" ]
+              },
+              "icons": {
+                "required": [ "sources", "iconsUrl" ]
               }
             }
           }
@@ -156,6 +162,27 @@
               },
               "minItems": 1,
               "uniqueItems": true
+            }
+          }
+        },
+        "icons": {
+          "description": "Icons",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "iconsUrl": {
+              "description": "The URL to find the icon examples on",
+              "type": "string",
+              "format": "uri"
+            },
+            "isFont": {
+              "description": "Indicates if the icons are implemented using an icon font",
+              "type": "boolean"
+            },
+            "sources": {
+              "description": "Selector for elements that serve as icon examples",
+              "type": "string",
+              "minLength": 1
             }
           }
         }

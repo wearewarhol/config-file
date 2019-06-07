@@ -9,17 +9,23 @@ import {
   ThemeConfiguration,
   ThemeColorsConfiguration,
   ThemeTypographyConfiguration,
+  ThemeIconsConfiguration,
 } from "./types";
 
 // Each of the sub properties of theme configuration is optional, nullable and
-// its URL and properties are optional with the url being cascaded from the rest
-// of the config and the properties defaulting to some built-in value
+// its URL and (properties if applicable) are optional with the url being
+// cascaded from the rest of the config and the properties defaulting to some
+// built-in value
 type MinimalColorsConfig =
   Optional<NonNullable<ThemeColorsConfiguration>, "colorsUrl" | "properties">
     | null
     | undefined;
 type MinimalTypographyConfig =
   Optional<NonNullable<ThemeTypographyConfiguration>, "typographyUrl" | "properties">
+    | null
+    | undefined;
+type MinimalIconsConfig =
+  Optional<NonNullable<ThemeIconsConfiguration>, "iconsUrl">
     | null
     | undefined;
 
@@ -61,11 +67,27 @@ const typographyWithDefaults = (
   }
 };
 
+const iconsWithDefaults = (
+  input: MinimalIconsConfig,
+  themeUrl: string | null,
+): ThemeIconsConfiguration => {
+  if (!input || !input.sources || input.sources.length === 0) {
+    return null;
+  } else {
+    return {
+      iconsUrl: input.iconsUrl || themeUrl,
+      sources: input.sources,
+      isFont: input.isFont,
+    };
+  }
+};
+
 // Everything about a theme is optional and nullable
 type MinimalThemeConfig = {
   themeUrl?: string | null;
   colors?: MinimalColorsConfig;
   typography?: MinimalTypographyConfig;
+  icons?: MinimalIconsConfig;
 } | null | undefined;
 
 const themeWithDefaults = (
@@ -80,7 +102,8 @@ const themeWithDefaults = (
       : styleguideUrl || null;
     const colors = colorsWithDefaults(inputTheme.colors, themeUrl);
     const typography = typographyWithDefaults(inputTheme.typography, themeUrl);
-    return { themeUrl, colors, typography };
+    const icons = iconsWithDefaults(inputTheme.icons, themeUrl);
+    return { themeUrl, colors, typography, icons };
   }
 };
 

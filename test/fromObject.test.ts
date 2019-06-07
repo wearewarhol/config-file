@@ -68,6 +68,7 @@ describe("fromObject()", () => {
           properties: [ "background-color" ],
         },
         typography: null,
+        icons: null,
       },
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
@@ -96,6 +97,7 @@ describe("fromObject()", () => {
           properties: [ "background-color", "color" ],
         },
         typography: null,
+        icons: null,
       },
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
@@ -122,6 +124,7 @@ describe("fromObject()", () => {
           sources: ".typo",
           properties: [ "font-family", "font-size", "font-weight", "font-style" ],
         },
+        icons: null,
       },
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
@@ -150,9 +153,65 @@ describe("fromObject()", () => {
           sources: ".typo",
           properties: [ "font-family", "font-size", "font-weight", "font-style", "color" ],
         },
+        icons: null,
       },
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
+    });
+  });
+
+  it("reads a minimal theme icon definition", () => {
+    const input = {
+      theme: {
+        themeUrl: "https://asdf.com/theme",
+        icons: {
+          sources: ".icon",
+          isFont: false,
+        },
+      },
+    };
+    expect(fromObject(input)).toEqual({
+      styleguideUrl: null,
+      theme: {
+        themeUrl: "https://asdf.com/theme",
+        colors: null,
+        typography: null,
+        icons: {
+          iconsUrl: "https://asdf.com/theme",
+          sources: ".icon",
+          isFont: false,
+        },
+      },
+      breakpoints: [ 1000 ],
+      components: [],
+    });
+  });
+
+  it("reads a full theme icon definition", () => {
+    const input = {
+      theme: {
+        themeUrl: "https://asdf.com/theme",
+        icons: {
+          iconsUrl: "https://asdf.com/theme/icons",
+          sources: ".icon",
+          isFont: false,
+        },
+      },
+    };
+    expect(fromObject(input)).toEqual({
+      styleguideUrl: null,
+      theme: {
+        themeUrl: "https://asdf.com/theme",
+        colors: null,
+        typography: null,
+        icons: {
+          iconsUrl: "https://asdf.com/theme/icons",
+          sources: ".icon",
+          isFont: false,
+        },
+      },
+      breakpoints: [ 1000 ],
+      components: [],
     });
   });
 
@@ -169,6 +228,11 @@ describe("fromObject()", () => {
         typography: {
           typographyUrl: "https://warhol.io/components/theme/typography",
           sources: ".typo",
+        },
+        icons: {
+          iconsUrl: "https://warhol.io/components/theme/icons",
+          sources: ".icon",
+          isFont: true,
         },
       },
       components: [
@@ -195,6 +259,11 @@ describe("fromObject()", () => {
           typographyUrl: "https://warhol.io/components/theme/typography",
           sources: ".typo",
           properties: [ "font-family", "font-size", "font-weight", "font-style" ],
+        },
+        icons: {
+          iconsUrl: "https://warhol.io/components/theme/icons",
+          sources: ".icon",
+          isFont: true,
         },
       },
       components: [{
