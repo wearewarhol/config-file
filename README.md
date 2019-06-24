@@ -17,7 +17,7 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
       "properties": [ "background-color", "color" ]
     },
     "typography": {
-      "colorsUrl": "https://foo.com/components/theme/typography",
+      "typographyUrl": "https://foo.com/components/theme/typography",
       "sources": ".typo",
       "properties": [ "font-family", "font-size", "font-weight", "font-style" ]
     },
