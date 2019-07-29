@@ -4,7 +4,7 @@ describe("fromJSON()", () => {
 
   it("parses a valid full config", () => {
     const input = `{
-      "styleguideUrl": "https://example.com/components",
+      "patternLibUrl": "https://example.com/components",
       "breakpoints": [ 800, 1000 ],
       "components": [
         { "source": ".foo", "target": "#hello" },
@@ -26,7 +26,7 @@ describe("fromJSON()", () => {
       }
     }`;
     expect(fromJSON(input)).toEqual({
-      styleguideUrl: "https://example.com/components",
+      patternLibUrl: "https://example.com/components",
       theme: {
         themeUrl: "https://example.com/components",
         colors: {

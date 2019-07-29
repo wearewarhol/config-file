@@ -31,7 +31,7 @@ export type ComponentConfiguration = {
 };
 
 export type Configuration = {
-  styleguideUrl: string | null;
+  patternLibUrl: string | null;
   breakpoints: number[];
   components: ComponentConfiguration[];
   theme: ThemeConfiguration;

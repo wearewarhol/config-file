@@ -5,15 +5,15 @@
   "type": "object",
   "additionalProperties": false,
   "allOf": [
-    { "$ref": "#/definitions/no-styleguide-url-requires-component-url" },
-    { "$ref": "#/definitions/no-styleguide-url-and-no-theme-url-requires-theme-subsection-url" }
+    { "$ref": "#/definitions/no-patternLib-url-requires-component-url" },
+    { "$ref": "#/definitions/no-patternLib-url-and-no-theme-url-requires-theme-subsection-url" }
   ],
 
   "definitions": {
 
-    "no-styleguide-url-requires-component-url": {
+    "no-patternLib-url-requires-component-url": {
       "if": {
-        "required": [ "styleguideUrl" ]
+        "required": [ "patternLibUrl" ]
       },
       "then": {
         "properties": {
@@ -35,10 +35,10 @@
       }
     },
 
-    "no-styleguide-url-and-no-theme-url-requires-theme-subsection-url": {
+    "no-patternLib-url-and-no-theme-url-requires-theme-subsection-url": {
       "if": {
         "anyOf": [
-          { "required": [ "styleguideUrl" ] },
+          { "required": [ "patternLibUrl" ] },
           {
             "properties": {
               "theme": {
@@ -86,8 +86,8 @@
   },
 
   "properties": {
-    "styleguideUrl": {
-      "description": "The URL to find your styleguide on",
+    "patternLibUrl": {
+      "description": "The URL at which to find the pattern library's kitchen sink page",
       "type": "string",
       "format": "uri"
     },

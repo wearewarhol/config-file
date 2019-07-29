@@ -6,7 +6,7 @@ describe("schema validation", () => {
     expect( () => fromObject({}) ).not.toThrow();
   });
 
-  it("requires a component url when there's no styleguide url", () => {
+  it("requires a component url when there's no pattern lib url", () => {
     expect(
       () => fromObject({ components: [{ source: ".foo" }] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
@@ -23,17 +23,17 @@ describe("schema validation", () => {
 
   it("does not accept empty selector strings or names on components", () => {
     expect(
-      () => fromObject({ styleguideUrl: "http://example.com", components: [{ source: "" }] }),
+      () => fromObject({ patternLibUrl: "http://example.com", components: [{ source: "" }] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
     expect(
-      () => fromObject({ styleguideUrl: "http://example.com", components: [{ source: "a", target: "" }] }),
+      () => fromObject({ patternLibUrl: "http://example.com", components: [{ source: "a", target: "" }] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
     expect(
-      () => fromObject({ styleguideUrl: "http://example.com", components: [{ source: "a", target: "b", name: "" }] }),
+      () => fromObject({ patternLibUrl: "http://example.com", components: [{ source: "a", target: "b", name: "" }] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
-  it("requires a color url when there's no styleguide oder theme url", () => {
+  it("requires a color url when there's no pattern lib oder theme url", () => {
     expect(
       () => fromObject({
         theme: {
@@ -48,7 +48,7 @@ describe("schema validation", () => {
   it("does not accept an empty color element selector string", () => {
     expect(
       () => fromObject({
-        styleguideUrl: "http://example.com",
+        patternLibUrl: "http://example.com",
         theme: {
           colors: {
             sources: "",
@@ -61,7 +61,7 @@ describe("schema validation", () => {
   it("does not accept an empty list of color properties", () => {
     expect(
       () => fromObject({
-        styleguideUrl: "http://example.com",
+        patternLibUrl: "http://example.com",
         theme: {
           colors: {
             sources: ".swatch",
@@ -72,7 +72,7 @@ describe("schema validation", () => {
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
-  it("requires a typography url when there's no styleguide oder theme url", () => {
+  it("requires a typography url when there's no pattern lib oder theme url", () => {
     expect(
       () => fromObject({
         theme: {
@@ -87,7 +87,7 @@ describe("schema validation", () => {
   it("does not accept an empty typography element selector string", () => {
     expect(
       () => fromObject({
-        styleguideUrl: "http://example.com",
+        patternLibUrl: "http://example.com",
         theme: {
           typography: {
             sources: "",
@@ -100,7 +100,7 @@ describe("schema validation", () => {
   it("does not accept an empty list of typography properties", () => {
     expect(
       () => fromObject({
-        styleguideUrl: "http://example.com",
+        patternLibUrl: "http://example.com",
         theme: {
           typography: {
             sources: ".typo",

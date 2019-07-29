@@ -6,7 +6,8 @@ import { InvalidConfigError } from "./errors";
 export const fromJSON = (input: string): Configuration => {
   if (typeof input !== "string") {
     const type = input === null ? "null" : typeof input;
-    throw new InvalidConfigError(`Input must be a JSON-encoded string, got ${ type }`);
+    const message = `Input must be a JSON-encoded string, got ${ type }`;
+    throw new InvalidConfigError(message);
   }
   if (input.trim().length === 0) {
     throw new InvalidConfigError(`Input string is empty`);

@@ -3,13 +3,13 @@ import { fromObject } from "../src/index";
 
 describe("fromObject()", () => {
 
-  it("accepts a minimal configuration containing only minimal component definitions and a styleguide url", () => {
+  it("accepts a minimal configuration containing only minimal component definitions and a pattern lib URL", () => {
     const input = {
-      styleguideUrl: "https://example.com",
+      patternLibUrl: "https://example.com",
       components: [{ source: ".foo" }, { source: ".bar" }],
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: "https://example.com",
+      patternLibUrl: "https://example.com",
       theme: null,
       breakpoints: [ 1000 ],
       components: [{
@@ -36,7 +36,7 @@ describe("fromObject()", () => {
       }],
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: null,
+      patternLibUrl: null,
       theme: null,
       breakpoints: [ 1000 ],
       components: [{
@@ -59,7 +59,7 @@ describe("fromObject()", () => {
       },
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: null,
+      patternLibUrl: null,
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: {
@@ -79,20 +79,20 @@ describe("fromObject()", () => {
     const input = {
       components: [{ source: ".foo", componentUrl: "https://asdf.com" }],
       theme: {
-        themeUrl: "https://example.com/styleguide/theme",
+        themeUrl: "https://example.com/patternlib/theme",
         colors: {
-          colorsUrl: "https://example.com/styleguide/theme/colors",
+          colorsUrl: "https://example.com/patternlib/theme/colors",
           sources: ".swatch",
           properties: [ "background-color", "color" ],
         },
       },
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: null,
+      patternLibUrl: null,
       theme: {
-        themeUrl: "https://example.com/styleguide/theme",
+        themeUrl: "https://example.com/patternlib/theme",
         colors: {
-          colorsUrl: "https://example.com/styleguide/theme/colors",
+          colorsUrl: "https://example.com/patternlib/theme/colors",
           sources: ".swatch",
           properties: [ "background-color", "color" ],
         },
@@ -115,7 +115,7 @@ describe("fromObject()", () => {
       },
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: null,
+      patternLibUrl: null,
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -135,21 +135,21 @@ describe("fromObject()", () => {
     const input = {
       components: [{ source: ".foo", componentUrl: "https://asdf.com" }],
       theme: {
-        themeUrl: "https://example.com/styleguide/theme",
+        themeUrl: "https://example.com/patternlib/theme",
         typography: {
-          typographyUrl: "https://example.com/styleguide/theme/typography",
+          typographyUrl: "https://example.com/patternlib/theme/typography",
           sources: ".typo",
           properties: [ "font-family", "font-size", "font-weight", "font-style", "color" ],
         },
       },
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: null,
+      patternLibUrl: null,
       theme: {
-        themeUrl: "https://example.com/styleguide/theme",
+        themeUrl: "https://example.com/patternlib/theme",
         colors: null,
         typography: {
-          typographyUrl: "https://example.com/styleguide/theme/typography",
+          typographyUrl: "https://example.com/patternlib/theme/typography",
           sources: ".typo",
           properties: [ "font-family", "font-size", "font-weight", "font-style", "color" ],
         },
@@ -171,7 +171,7 @@ describe("fromObject()", () => {
       },
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: null,
+      patternLibUrl: null,
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -199,7 +199,7 @@ describe("fromObject()", () => {
       },
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: null,
+      patternLibUrl: null,
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -217,7 +217,7 @@ describe("fromObject()", () => {
 
   it("accepts a full configuration", () => {
     const input = {
-      styleguideUrl: "https://warhol.io/components",
+      patternLibUrl: "https://warhol.io/components",
       breakpoints: [ 300, 800, 1200 ],
       theme: {
         themeUrl: "https://warhol.io/components/theme",
@@ -246,7 +246,7 @@ describe("fromObject()", () => {
       ],
     };
     expect(fromObject(input)).toEqual({
-      styleguideUrl: "https://warhol.io/components",
+      patternLibUrl: "https://warhol.io/components",
       breakpoints: [ 300, 800, 1200 ],
       theme: {
         themeUrl: "https://warhol.io/components/theme",

@@ -92,14 +92,14 @@ type MinimalThemeConfig = {
 
 const themeWithDefaults = (
   inputTheme: MinimalThemeConfig,
-  styleguideUrl: string | null,
+  patternLibUrl: string | null,
 ): ThemeConfiguration => {
   if (!inputTheme) {
     return null;
   } else {
     const themeUrl = (inputTheme)
-      ? inputTheme.themeUrl || styleguideUrl || null
-      : styleguideUrl || null;
+      ? inputTheme.themeUrl || patternLibUrl || null
+      : patternLibUrl || null;
     const colors = colorsWithDefaults(inputTheme.colors, themeUrl);
     const typography = typographyWithDefaults(inputTheme.typography, themeUrl);
     const icons = iconsWithDefaults(inputTheme.icons, themeUrl);
@@ -113,20 +113,20 @@ type MinimalComponentConfig = Optional<
 >;
 
 export const withDefaults = (input: {
-  styleguideUrl?: string | null,
+  patternLibUrl?: string | null,
   breakpoints?: number[],
   theme?: MinimalThemeConfig,
   components?: MinimalComponentConfig[],
 }): Configuration => {
-  const styleguideUrl = input.styleguideUrl || null;
+  const patternLibUrl = input.patternLibUrl || null;
   return {
-    styleguideUrl,
+    patternLibUrl,
     breakpoints: input.breakpoints || [ 1000 ],
-    theme: themeWithDefaults(input.theme, styleguideUrl),
+    theme: themeWithDefaults(input.theme, patternLibUrl),
     components: (input.components)
       ? input.components.map( (component) => {
           return {
-            componentUrl: component.componentUrl || styleguideUrl || null,
+            componentUrl: component.componentUrl || patternLibUrl || null,
             name: component.name || null,
             source: component.source  as string,
             target: component.target || component.source as string,
