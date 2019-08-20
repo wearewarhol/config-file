@@ -11,6 +11,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
       theme: null,
+      utils: null,
       breakpoints: [ 1000 ],
       components: [{
         name: null,
@@ -38,6 +39,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       theme: null,
+      utils: null,
       breakpoints: [ 1000 ],
       components: [{
         name: "Magic Slider",
@@ -70,6 +72,7 @@ describe("fromObject()", () => {
         typography: null,
         icons: null,
       },
+      utils: null,
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
@@ -99,6 +102,7 @@ describe("fromObject()", () => {
         typography: null,
         icons: null,
       },
+      utils: null,
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
@@ -126,6 +130,7 @@ describe("fromObject()", () => {
         },
         icons: null,
       },
+      utils: null,
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
@@ -155,6 +160,7 @@ describe("fromObject()", () => {
         },
         icons: null,
       },
+      utils: null,
       breakpoints: [ 1000 ],
       components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
@@ -182,6 +188,7 @@ describe("fromObject()", () => {
           isFont: false,
         },
       },
+      utils: null,
       breakpoints: [ 1000 ],
       components: [],
     });
@@ -210,6 +217,7 @@ describe("fromObject()", () => {
           isFont: false,
         },
       },
+      utils: null,
       breakpoints: [ 1000 ],
       components: [],
     });
@@ -234,6 +242,14 @@ describe("fromObject()", () => {
           sources: ".icon",
           isFont: true,
         },
+      },
+      utils: {
+        utilsUrl: "https://warhol.io/components/utils",
+        sources: [
+          { type: "rule" as const, selector: ".align-left" },
+          { type: "rule" as const, selector: ".align-right" },
+          { type: "element" as const, selector: ".shadow" },
+        ],
       },
       components: [
         { source: ".foo" },
@@ -265,6 +281,14 @@ describe("fromObject()", () => {
           sources: ".icon",
           isFont: true,
         },
+      },
+      utils: {
+        utilsUrl: "https://warhol.io/components/utils",
+        sources: [
+          { type: "rule", selector: ".align-left" },
+          { type: "rule", selector: ".align-right" },
+          { type: "element", selector: ".shadow" },
+        ],
       },
       components: [{
         name: null,

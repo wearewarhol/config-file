@@ -27,6 +27,14 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
       "isFont": true
     }
   },
+  "utils": {
+    "iconsUrl": "https://foo.com/components/theme/utils",
+    "sources": [
+      { "type": "rule", "selector": ".align-left" },
+      { "type": "rule", "selector": ".align-right" },
+      { "type": "element", "selector": ".shadow" }
+    ]
+  },
   "components": [
     { "source": ".foo" },
     { "source": ".bar", "target": ".notEqualToSource" },
@@ -97,6 +105,21 @@ Configuration for theme icons with the following fields:
   * `isFont` (`boolean`, required, non-empty): defines if icons are created using an icon font
 
 The `iconsUrl` field is required if neither a pattern lib URL nor a theme url have been specified.
+
+### Field `utils` (optional, `object`, defaults to `null`)
+
+Definitions for style utilities (classes for alignment, layout, shadows and the like).
+
+### Field `utils.utilsUrl` (optional, `string`, defaults to the pattern lib URL)
+
+Utils URL, is only required if there is no top-level `patternLibUrl`.
+
+### Field `utils.sources` (required, array of objects)
+
+Sources for utilities. Each utility is described by an object:
+
+  * `type` (either `"rule"` or `"element"`): whether to read the utility styles from an element or from a css rule
+  * `selector` (`string`, required, non-empty): the selector for the the style utility
 
 ## JavaScript API
 

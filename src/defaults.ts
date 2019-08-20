@@ -10,6 +10,8 @@ import {
   ThemeColorsConfiguration,
   ThemeTypographyConfiguration,
   ThemeIconsConfiguration,
+  UtilsConfiguration,
+  Util,
 } from "./types";
 
 // Each of the sub properties of theme configuration is optional, nullable and
@@ -107,6 +109,26 @@ const themeWithDefaults = (
   }
 };
 
+// Everything about utils is optional and nullable
+type MinimalUtilsConfig = {
+  utilsUrl?: string | null;
+  sources: Util[];
+} | null | undefined;
+
+const utilsWithDefaults = (
+  inputUtils: MinimalUtilsConfig,
+  patternLibUrl: string | null,
+): UtilsConfiguration => {
+  if (!inputUtils) {
+    return null;
+  } else {
+    const utilsUrl = (inputUtils)
+      ? inputUtils.utilsUrl || patternLibUrl || null
+      : patternLibUrl || null;
+    return { utilsUrl, sources: inputUtils.sources };
+  }
+};
+
 // Only the component's source selector is mandatory
 type MinimalComponentConfig = Optional<
   ComponentConfiguration, "componentUrl" | "name" | "target"
@@ -116,6 +138,7 @@ export const withDefaults = (input: {
   patternLibUrl?: string | null,
   breakpoints?: number[],
   theme?: MinimalThemeConfig,
+  utils?: MinimalUtilsConfig,
   components?: MinimalComponentConfig[],
 }): Configuration => {
   const patternLibUrl = input.patternLibUrl || null;
@@ -123,6 +146,7 @@ export const withDefaults = (input: {
     patternLibUrl,
     breakpoints: input.breakpoints || [ 1000 ],
     theme: themeWithDefaults(input.theme, patternLibUrl),
+    utils: utilsWithDefaults(input.utils, patternLibUrl),
     components: (input.components)
       ? input.components.map( (component) => {
           return {

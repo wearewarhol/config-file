@@ -111,4 +111,19 @@ describe("schema validation", () => {
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
+  it("requires at least one source if utils are defined", () => {
+    expect(
+      () => fromObject({ utils: { sources: [] } }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
+  it("requires a utils url when there's no pattern lib url", () => {
+    expect(
+      () => fromObject({ utils: { sources: [{ type: "rule", selector: ".foo" }] } }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
+      () => fromObject({ utils: { utilsUrl: "http://example.com", sources: [{ type: "rule", selector: ".foo" }] } }),
+    ).not.toThrow();
+  });
+
 });

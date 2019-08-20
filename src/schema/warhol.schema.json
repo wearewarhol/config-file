@@ -6,6 +6,7 @@
   "additionalProperties": false,
   "allOf": [
     { "$ref": "#/definitions/no-patternLib-url-requires-component-url" },
+    { "$ref": "#/definitions/no-patternLib-url-requires-utils-url" },
     { "$ref": "#/definitions/no-patternLib-url-and-no-theme-url-requires-theme-subsection-url" }
   ],
 
@@ -30,6 +31,19 @@
             "items": {
               "required": [ "source", "componentUrl" ]
             }
+          }
+        }
+      }
+    },
+
+    "no-patternLib-url-requires-utils-url": {
+      "if": {
+        "required": [ "patternLibUrl" ]
+      },
+      "else": {
+        "properties": {
+          "utils": {
+            "required": [ "utilsUrl" ]
           }
         }
       }
@@ -185,6 +199,38 @@
               "minLength": 1
             }
           }
+        }
+      }
+    },
+    "utils": {
+      "description": "Style utilities",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "utilsUrl": {
+          "description": "The URL to find the utilities on",
+          "type": "string",
+          "format": "uri"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "description": "Whether to read declarations from an element or a css rule",
+                "type": "string",
+                "enum": [ "rule", "element" ]
+              },
+              "selector": {
+                "description": "The selector for the rule or element from which to read the utility",
+                "type": "string"
+              }
+            }
+          },
+          "minItems": 1,
+          "uniqueItems": true
         }
       }
     },

@@ -30,9 +30,18 @@ export type ComponentConfiguration = {
   target: string;
 };
 
+export type Util = { readonly type: "rule", selector: string }
+                 | { readonly type: "element", selector: string };
+
+export type UtilsConfiguration = {
+  utilsUrl: string | null;
+  sources: Util[];
+} | null;
+
 export type Configuration = {
   patternLibUrl: string | null;
   breakpoints: number[];
   components: ComponentConfiguration[];
   theme: ThemeConfiguration;
+  utils: UtilsConfiguration;
 };

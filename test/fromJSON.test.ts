@@ -10,6 +10,13 @@ describe("fromJSON()", () => {
         { "source": ".foo", "target": "#hello" },
         { "source": ".bar" }
       ],
+      "utils": {
+        "sources": [
+          { "type": "rule", "selector": ".align-left" },
+          { "type": "rule", "selector": ".align-right" },
+          { "type": "element", "selector": ".shadow" }
+        ]
+      },
       "theme": {
         "colors": {
           "sources": ".swatch",
@@ -44,6 +51,14 @@ describe("fromJSON()", () => {
           sources: ".icon",
           isFont: true,
         },
+      },
+      utils: {
+        utilsUrl: "https://example.com/components",
+        sources: [
+          { type: "rule", selector: ".align-left" },
+          { type: "rule", selector: ".align-right" },
+          { type: "element", selector: ".shadow" },
+        ],
       },
       breakpoints: [ 800, 1000 ],
       components: [{

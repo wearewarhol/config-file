@@ -3,6 +3,7 @@ export { fromJSON } from "./fromJSON";
 export {
   Configuration,
   ComponentConfiguration,
+  UtilsConfiguration,
   ThemeConfiguration,
   ThemeColorsConfiguration,
   ThemeTypographyConfiguration,
