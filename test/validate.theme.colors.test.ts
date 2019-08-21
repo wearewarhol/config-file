@@ -1,6 +1,6 @@
 import { fromObject } from "../src/fromObject";
 
-describe("schema validation", () => {
+describe("schema validation for colors", () => {
 
   it("requires a color url when there's no pattern lib oder theme url", () => {
     expect(
@@ -21,6 +21,9 @@ describe("schema validation", () => {
     expect(
       () => fromObject({ patternLibUrl: "http://example.com", theme: { colors: { sources: "" } } }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
+      () => fromObject({ patternLibUrl: "http://example.com", theme: { colors: { sources: ".foo" } } }),
+    ).not.toThrow();
   });
 
   it("does not accept an empty list of color properties", () => {
