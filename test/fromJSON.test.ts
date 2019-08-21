@@ -13,7 +13,7 @@ describe("fromJSON()", () => {
       "utils": {
         "sources": [
           { "type": "rule", "selector": ".align-left" },
-          { "type": "rule", "selector": ".align-right" },
+          { "type": "rule", "selector": ".align-right", "name": "Right" },
           { "type": "element", "selector": ".shadow" }
         ]
       },
@@ -55,9 +55,9 @@ describe("fromJSON()", () => {
       utils: {
         utilsUrl: "https://example.com/components",
         sources: [
-          { type: "rule", selector: ".align-left" },
-          { type: "rule", selector: ".align-right" },
-          { type: "element", selector: ".shadow" },
+          { type: "rule", selector: ".align-left", name: ".align-left" },
+          { type: "rule", selector: ".align-right", name: "Right" },
+          { type: "element", selector: ".shadow", name: ".shadow" },
         ],
       },
       breakpoints: [ 800, 1000 ],

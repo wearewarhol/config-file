@@ -247,7 +247,7 @@ describe("fromObject()", () => {
         utilsUrl: "https://warhol.io/components/utils",
         sources: [
           { type: "rule" as const, selector: ".align-left" },
-          { type: "rule" as const, selector: ".align-right" },
+          { type: "rule" as const, selector: ".align-right", name: "Right" },
           { type: "element" as const, selector: ".shadow" },
         ],
       },
@@ -285,9 +285,9 @@ describe("fromObject()", () => {
       utils: {
         utilsUrl: "https://warhol.io/components/utils",
         sources: [
-          { type: "rule", selector: ".align-left" },
-          { type: "rule", selector: ".align-right" },
-          { type: "element", selector: ".shadow" },
+          { type: "rule", selector: ".align-left", name: ".align-left" },
+          { type: "rule", selector: ".align-right", name: "Right" },
+          { type: "element", selector: ".shadow", name: ".shadow" },
         ],
       },
       components: [{

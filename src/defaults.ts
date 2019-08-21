@@ -110,9 +110,10 @@ const themeWithDefaults = (
 };
 
 // Everything about utils is optional and nullable
+type MinimalUtil = Optional<Util, "name">;
 type MinimalUtilsConfig = {
   utilsUrl?: string | null;
-  sources: Util[];
+  sources: MinimalUtil[];
 } | null | undefined;
 
 const utilsWithDefaults = (
@@ -125,7 +126,10 @@ const utilsWithDefaults = (
     const utilsUrl = (inputUtils)
       ? inputUtils.utilsUrl || patternLibUrl || null
       : patternLibUrl || null;
-    return { utilsUrl, sources: inputUtils.sources };
+    const sources = inputUtils.sources.map(
+      ({ type, selector, name = selector }) => ({ type, selector, name }),
+    );
+    return { utilsUrl, sources };
   }
 };
 

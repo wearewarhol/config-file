@@ -120,6 +120,7 @@ Sources for utilities. Each utility is described by an object:
 
   * `type` (either `"rule"` or `"element"`): whether to read the utility styles from an element or from a css rule
   * `selector` (`string`, required, non-empty): the selector for the the style utility
+  * `name` (`string`, optional, non-empty, defaults to `selector`): utility name name, defaults to the selector
 
 ## JavaScript API
 

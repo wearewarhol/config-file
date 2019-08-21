@@ -227,6 +227,11 @@
                 "description": "The selector for the rule or element from which to read the utility",
                 "type": "string",
                 "minLength": 1
+              },
+              "name": {
+                "description": "A name for the utility",
+                "type": "string",
+                "minLength": 1
               }
             },
             "required": [ "type", "selector" ]

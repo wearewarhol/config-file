@@ -32,6 +32,25 @@ describe("schema validation for utils", () => {
     ).not.toThrow();
   });
 
+  it("allows non-empty names on utils", () => {
+    expect(
+      () => fromObject({
+        utils: {
+          utilsUrl: "http://example.com",
+          sources: [{ name: "hi!", type: "rule", selector: ".foo" }],
+        },
+      }),
+    ).not.toThrow();
+    expect(
+      () => fromObject({
+        utils: {
+          utilsUrl: "http://example.com",
+          sources: [{ name: "", type: "rule", selector: ".foo" }],
+        },
+      }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
   it("accepts only 'rule' and 'element' as types on utils", () => {
     expect(
       () => fromObject({ utils: { utilsUrl: "http://foo.com", sources: [{ type: "a", selector: ".foo" } as any] } }),
