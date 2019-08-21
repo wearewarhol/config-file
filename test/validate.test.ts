@@ -33,43 +33,4 @@ describe("schema validation", () => {
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
-  it("requires a typography url when there's no pattern lib oder theme url", () => {
-    expect(
-      () => fromObject({
-        theme: {
-          typography: {
-            sources: ".typo",
-          },
-        },
-      }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-  });
-
-  it("does not accept an empty typography element selector string", () => {
-    expect(
-      () => fromObject({
-        patternLibUrl: "http://example.com",
-        theme: {
-          typography: {
-            sources: "",
-          },
-        },
-      }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-  });
-
-  it("does not accept an empty list of typography properties", () => {
-    expect(
-      () => fromObject({
-        patternLibUrl: "http://example.com",
-        theme: {
-          typography: {
-            sources: ".typo",
-            properties: [],
-          },
-        },
-      }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-  });
-
 });
