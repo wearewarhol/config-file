@@ -55,9 +55,9 @@ describe("fromJSON()", () => {
       utils: {
         utilsUrl: "https://example.com/components",
         sources: [
-          { type: "rule", selector: ".align-left", name: ".align-left" },
+          { type: "rule", selector: ".align-left", name: null },
           { type: "rule", selector: ".align-right", name: "Right" },
-          { type: "element", selector: ".shadow", name: ".shadow" },
+          { type: "element", selector: ".shadow", name: null },
         ],
       },
       breakpoints: [ 800, 1000 ],

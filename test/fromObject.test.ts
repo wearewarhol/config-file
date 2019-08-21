@@ -285,9 +285,9 @@ describe("fromObject()", () => {
       utils: {
         utilsUrl: "https://warhol.io/components/utils",
         sources: [
-          { type: "rule", selector: ".align-left", name: ".align-left" },
+          { type: "rule", selector: ".align-left", name: null },
           { type: "rule", selector: ".align-right", name: "Right" },
-          { type: "element", selector: ".shadow", name: ".shadow" },
+          { type: "element", selector: ".shadow", name: null },
         ],
       },
       components: [{

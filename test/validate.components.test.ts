@@ -34,6 +34,9 @@ describe("schema validation", () => {
       () => fromObject({ patternLibUrl: "http://example.com", components: [{ source: "a", target: "b", name: "" }] }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
     expect(
+      () => fromObject({ patternLibUrl: "http://example.com", components: [{ source: "a", target: "b", name: null }] }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
       () => fromObject({ patternLibUrl: "http://example.com", components: [{ source: "a", target: "b", name: "c" }] }),
     ).not.toThrow();
   });
