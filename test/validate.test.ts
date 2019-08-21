@@ -33,45 +33,6 @@ describe("schema validation", () => {
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
-  it("requires a color url when there's no pattern lib oder theme url", () => {
-    expect(
-      () => fromObject({
-        theme: {
-          colors: {
-            sources: ".swatch",
-          },
-        },
-      }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-  });
-
-  it("does not accept an empty color element selector string", () => {
-    expect(
-      () => fromObject({
-        patternLibUrl: "http://example.com",
-        theme: {
-          colors: {
-            sources: "",
-          },
-        },
-      }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-  });
-
-  it("does not accept an empty list of color properties", () => {
-    expect(
-      () => fromObject({
-        patternLibUrl: "http://example.com",
-        theme: {
-          colors: {
-            sources: ".swatch",
-            properties: [],
-          },
-        },
-      }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-  });
-
   it("requires a typography url when there's no pattern lib oder theme url", () => {
     expect(
       () => fromObject({
@@ -109,21 +70,6 @@ describe("schema validation", () => {
         },
       }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-  });
-
-  it("requires at least one source if utils are defined", () => {
-    expect(
-      () => fromObject({ utils: { sources: [] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-  });
-
-  it("requires a utils url when there's no pattern lib url", () => {
-    expect(
-      () => fromObject({ utils: { sources: [{ type: "rule", selector: ".foo" }] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
-    expect(
-      () => fromObject({ utils: { utilsUrl: "http://example.com", sources: [{ type: "rule", selector: ".foo" }] } }),
-    ).not.toThrow();
   });
 
 });
