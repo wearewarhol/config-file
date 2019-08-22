@@ -38,12 +38,22 @@
 
     "no-patternLib-url-requires-utils-url": {
       "if": {
-        "required": [ "patternLibUrl" ]
+        "required": [ "patternLibUrl" ],
+        "properties": {
+          "patternLibUrl": {
+            "type": "string"
+          }
+        }
       },
       "else": {
         "properties": {
           "utils": {
-            "required": [ "utilsUrl" ]
+            "required": [ "utilsUrl" ],
+            "properties": {
+              "utilsUrl": {
+                "type": "string"
+              }
+            }
           }
         }
       }
@@ -52,11 +62,23 @@
     "no-patternLib-url-and-no-theme-url-requires-theme-subsection-url": {
       "if": {
         "anyOf": [
-          { "required": [ "patternLibUrl" ] },
+          {
+             "required": [ "patternLibUrl" ],
+             "properties": {
+               "patternLibUrl": {
+                 "type": "string"
+               }
+             }
+          },
           {
             "properties": {
               "theme": {
-                "required": [ "themeUrl" ]
+                "required": [ "themeUrl" ],
+                "properties": {
+                  "themeUrl": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
@@ -84,13 +106,28 @@
           "theme": {
             "properties": {
               "colors": {
-                "required": [ "sources", "colorsUrl" ]
+                "required": [ "sources", "colorsUrl" ],
+                "properties": {
+                  "colorsUrl": {
+                    "type": "string"
+                  }
+                }
               },
               "typography": {
-                "required": [ "sources", "typographyUrl" ]
+                "required": [ "sources", "typographyUrl" ],
+                "properties": {
+                  "typographyUrl": {
+                    "type": "string"
+                  }
+                }
               },
               "icons": {
-                "required": [ "sources", "iconsUrl" ]
+                "required": [ "sources", "iconsUrl" ],
+                "properties": {
+                  "iconsUrl": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
@@ -102,12 +139,12 @@
   "properties": {
     "patternLibUrl": {
       "description": "The URL at which to find the pattern library's kitchen sink page",
-      "type": "string",
+      "type": [ "string", "null" ],
       "format": "uri"
     },
     "breakpoints": {
       "description": "The screen widths with which to take snapshots",
-      "type": "array",
+      "type": [ "array", "null" ],
       "items": {
         "type": "integer",
         "minimum": 100
@@ -117,22 +154,22 @@
     },
     "theme": {
       "description": "Theme invariants for the style guide like colors and font sizes",
-      "type": "object",
+      "type": [ "object", "null" ],
       "additionalProperties": false,
       "properties": {
         "themeUrl": {
           "description": "The URL to find the theme definitions on",
-          "type": "string",
+          "type": [ "string", "null" ],
           "format": "uri"
         },
         "colors": {
           "description": "Colors allowed in the style guide",
-          "type": "object",
+          "type": [ "object", "null" ],
           "additionalProperties": false,
           "properties": {
             "colorsUrl": {
               "description": "The URL to find the color definitions on",
-              "type": "string",
+              "type": [ "string", "null" ],
               "format": "uri"
             },
             "sources": {
@@ -154,12 +191,12 @@
         },
         "typography": {
           "description": "Typography examples for the style guide",
-          "type": "object",
+          "type": [ "object", "null" ],
           "additionalProperties": false,
           "properties": {
             "typographyUrl": {
               "description": "The URL to find the typography examples on",
-              "type": "string",
+              "type": [ "string", "null" ],
               "format": "uri"
             },
             "sources": {
@@ -181,12 +218,12 @@
         },
         "icons": {
           "description": "Icons",
-          "type": "object",
+          "type": [ "object", "null" ],
           "additionalProperties": false,
           "properties": {
             "iconsUrl": {
               "description": "The URL to find the icon examples on",
-              "type": "string",
+              "type": [ "string", "null" ],
               "format": "uri"
             },
             "isFont": {
@@ -204,12 +241,12 @@
     },
     "utils": {
       "description": "Style utilities",
-      "type": "object",
+      "type": [ "object", "null" ],
       "additionalProperties": false,
       "properties": {
         "utilsUrl": {
           "description": "The URL to find the utilities on",
-          "type": "string",
+          "type": [ "string", "null" ],
           "format": "uri"
         },
         "sources": {
@@ -236,14 +273,13 @@
             },
             "required": [ "type", "selector" ]
           },
-          "minItems": 1,
           "uniqueItems": true
         }
       }
     },
     "components": {
       "description": "Component definitions",
-      "type": "array",
+      "type": [ "array", "null" ],
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -270,7 +306,7 @@
           }
         }
       },
-      "minItems": 1
+      "uniqueItems": true
     }
   }
 }

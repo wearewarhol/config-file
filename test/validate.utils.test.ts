@@ -2,22 +2,49 @@ import { fromObject } from "../src/fromObject";
 
 describe("schema validation for utils", () => {
 
-  it("requires a utils url when there's no pattern lib url", () => {
+  it("is not a required field", () => {
+    expect( () => fromObject({}) ).not.toThrow();
+    expect( () => fromObject({ utils: undefined }) ).not.toThrow();
+    expect( () => fromObject({ utils: null }) ).not.toThrow();
+  });
+
+  it("requires a non-null utils url when there's no pattern lib url", () => {
     expect(
       () => fromObject({ utils: { sources: [{ type: "rule", selector: ".foo" }] } }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
+      () => fromObject({ patternLibUrl: null, utils: { sources: [{ type: "rule", selector: ".foo" }] } }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
+      () => fromObject({ patternLibUrl: null, utils: { utilsUrl: null, sources: [{ type: "rule", selector: ".foo" }] } }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    expect(
+      () => fromObject({ utils: { utilsUrl: null, sources: [{ type: "rule", selector: ".foo" }] } }),
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
     expect(
       () => fromObject({ utils: { utilsUrl: "http://example.com", sources: [{ type: "rule", selector: ".foo" }] } }),
     ).not.toThrow();
     expect(
-      () => fromObject({ patternLibUrl: "http://example.com", utils: { sources: [{ type: "rule", selector: "a" }] } }),
+      () => fromObject({ patternLibUrl: null, utils: { utilsUrl: "http://example.com", sources: [{ type: "rule", selector: ".foo" }] } }),
+    ).not.toThrow();
+    expect(
+      () => fromObject({ patternLibUrl: "http://example.com", utils: { utilsUrl: null, sources: [{ type: "rule", selector: "a" }] } }),
     ).not.toThrow();
   });
 
-  it("requires at least one source if utils are defined", () => {
+  it("works without any sources", () => {
     expect(
       () => fromObject({ utils: { utilsUrl: "http://example.com", sources: [] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).not.toThrow();
+  });
+
+  it("complains about duplicate sources", () => {
+    expect(
+      () => fromObject({ utils: {
+        utilsUrl: "http://example.com",
+        sources: [{ type: "rule", selector: "a" }, { type: "rule", selector: "a" }] },
+      }),
+    ).toThrow();
   });
 
   it("requires type and selector fields on utils", () => {

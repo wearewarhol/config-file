@@ -140,10 +140,10 @@ type MinimalComponentConfig = Optional<
 
 export const withDefaults = (input: {
   patternLibUrl?: string | null,
-  breakpoints?: number[],
+  breakpoints?: number[] | null,
   theme?: MinimalThemeConfig,
   utils?: MinimalUtilsConfig,
-  components?: MinimalComponentConfig[],
+  components?: MinimalComponentConfig[] | null,
 }): Configuration => {
   const patternLibUrl = input.patternLibUrl || null;
   return {
@@ -152,13 +152,13 @@ export const withDefaults = (input: {
     theme: themeWithDefaults(input.theme, patternLibUrl),
     utils: utilsWithDefaults(input.utils, patternLibUrl),
     components: (input.components)
-      ? input.components.map( (component) => {
-          return {
+      ? input.components.flatMap( (component) => {
+          return (component) ? [{
             componentUrl: component.componentUrl || patternLibUrl || null,
             name: component.name || null,
             source: component.source  as string,
             target: component.target || component.source as string,
-          };
+          }] : [];
         })
       : [],
   };

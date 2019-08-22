@@ -2,6 +2,12 @@ import { fromObject } from "../src/fromObject";
 
 describe("schema validation", () => {
 
+  it("is not a required field", () => {
+    expect( () => fromObject({ }) ).not.toThrow();
+    expect( () => fromObject({ components: undefined }) ).not.toThrow();
+    expect( () => fromObject({ components: null }) ).not.toThrow();
+  });
+
   it("requires a component url when there's no pattern lib url", () => {
     expect(
       () => fromObject({ components: [{ source: ".foo" }] }),
@@ -11,10 +17,10 @@ describe("schema validation", () => {
     ).not.toThrow();
   });
 
-  it("requires at least one component if a component list is passed", () => {
+  it("works with an empty component list", () => {
     expect(
       () => fromObject({ components: [] }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).not.toThrow();
   });
 
   it("does not accept empty selector strings or names on components", () => {
@@ -39,6 +45,15 @@ describe("schema validation", () => {
     expect(
       () => fromObject({ patternLibUrl: "http://example.com", components: [{ source: "a", target: "b", name: "c" }] }),
     ).not.toThrow();
+  });
+
+  it("complains about duplicate sources", () => {
+    expect(
+      () => fromObject({
+        patternLibUrl: "https://example.com",
+        components: [{ source: ".foo" }, { source: ".foo" }],
+      }),
+    ).toThrow();
   });
 
 });

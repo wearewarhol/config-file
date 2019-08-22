@@ -3,6 +3,28 @@ import { fromObject } from "../src/index";
 
 describe("fromObject()", () => {
 
+  it("accepts an empty configuration", () => {
+    const input = {};
+    expect(fromObject(input)).toEqual({
+      patternLibUrl: null,
+      theme: null,
+      utils: null,
+      breakpoints: [ 1000 ],
+      components: [],
+    });
+  });
+
+  it("turns 'null' components into empty arrays", () => {
+    const input = { components: null };
+    expect(fromObject(input)).toEqual({
+      patternLibUrl: null,
+      theme: null,
+      utils: null,
+      breakpoints: [ 1000 ],
+      components: [],
+    });
+  });
+
   it("accepts a minimal configuration containing only minimal component definitions and a pattern lib URL", () => {
     const input = {
       patternLibUrl: "https://example.com",
