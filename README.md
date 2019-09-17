@@ -32,7 +32,7 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
     "sources": [
       { "type": "rule", "selector": ".align-left" },
       { "type": "rule", "selector": ".align-right" },
-      { "type": "element", "selector": ".shadow" }
+      { "type": "element", "selector": ".shadow", "components": [ ".foo", ".notEqualToSource" ] }
     ]
   },
   "components": [
@@ -102,7 +102,7 @@ Configuration for theme icons with the following fields:
 
   * `sources` (`string`, required, non-empty): selector for elements that contain icons
   * `iconsUrl` (`string` or `null`, optional *or required* depending on the theme and pattern lib URLs, defaults to the theme or pattern lib URL): the url for the icon examples
-  * `isFont` (`boolean`, required, non-empty): defines if icons are created using an icon font
+  * `type` (`"font"`, required): defines if icons are created using an icon font or in some other way (no other way is supported at this moment)
 
 The `iconsUrl` field is required if neither a pattern lib URL nor a theme url have been specified.
 
@@ -121,6 +121,10 @@ Sources for utilities. Each utility is described by an object:
   * `type` (either `"rule"` or `"element"`): whether to read the utility styles from an element or from a css rule
   * `selector` (`string`, required, non-empty): the selector for the the style utility
   * `name` (`string`, optional, non-empty, defaults to `null`): utility name name, defaults to null
+
+### Field `utils.components` (optional, array of strings)
+
+List of components (specified by their target selector) that this utility can apply to. Each selector *must* match a component's target selector (or its source selector if the component in question has no target selector).
 
 ## JavaScript API
 

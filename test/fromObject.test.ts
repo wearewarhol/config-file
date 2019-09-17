@@ -270,7 +270,7 @@ describe("fromObject()", () => {
         sources: [
           { type: "rule" as const, selector: ".align-left" },
           { type: "rule" as const, selector: ".align-right", name: "Right" },
-          { type: "element" as const, selector: ".shadow" },
+          { type: "element" as const, selector: ".shadow", components: [ ".foo", ".bar" ] },
         ],
       },
       components: [
@@ -278,7 +278,7 @@ describe("fromObject()", () => {
         {
           name: "Magic Slider",
           componentUrl: "https://google.de/",
-          source: ".foo",
+          source: ".slider",
           target: ".bar",
         },
       ],
@@ -307,9 +307,9 @@ describe("fromObject()", () => {
       utils: {
         utilsUrl: "https://warhol.io/components/utils",
         sources: [
-          { type: "rule", selector: ".align-left", name: null },
-          { type: "rule", selector: ".align-right", name: "Right" },
-          { type: "element", selector: ".shadow", name: null },
+          { type: "rule", selector: ".align-left", name: null, components: [] },
+          { type: "rule", selector: ".align-right", name: "Right", components: [] },
+          { type: "element", selector: ".shadow", name: null, components: [ ".foo", ".bar" ] },
         ],
       },
       components: [{
@@ -320,7 +320,7 @@ describe("fromObject()", () => {
       }, {
         name: "Magic Slider",
         componentUrl: "https://google.de/",
-        source: ".foo",
+        source: ".slider",
         target: ".bar",
       }],
     });

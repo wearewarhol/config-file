@@ -78,6 +78,33 @@ describe("schema validation for utils", () => {
     ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
   });
 
+  it("allows non-empty component targets in the component restrictions on utils", () => {
+    expect(
+      () => fromObject({
+        utils: {
+          utilsUrl: "http://example.com",
+          sources: [{ name: "hi!", type: "rule", selector: ".foo", components: [] }],
+        },
+      }),
+    ).not.toThrow();
+    expect(
+      () => fromObject({
+        utils: {
+          utilsUrl: "http://example.com",
+          sources: [{ name: "hi!", type: "rule", selector: ".foo", components: [ ".hello" ] }],
+        },
+      }),
+    ).not.toThrow();
+    expect(
+      () => fromObject({
+        utils: {
+          utilsUrl: "http://example.com",
+          sources: [{ name: "hi!", type: "rule", selector: ".foo", components: [ "" ] }],
+        },
+      }),
+    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+  });
+
   it("accepts only 'rule' and 'element' as types on utils", () => {
     expect(
       () => fromObject({ utils: { utilsUrl: "http://foo.com", sources: [{ type: "a", selector: ".foo" } as any] } }),

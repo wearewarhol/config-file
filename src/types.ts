@@ -30,9 +30,12 @@ export type ComponentConfiguration = {
   target: string;
 };
 
-export type Util =
-  { readonly type: "rule", selector: string; name: string | null } |
-  { readonly type: "element", selector: string ; name: string | null };
+export type Util = {
+  readonly type: "rule" | "element";
+  readonly selector: string;
+  readonly name: string | null;
+  readonly components: readonly string[];
+};
 
 export type UtilsConfiguration = {
   utilsUrl: string | null;
