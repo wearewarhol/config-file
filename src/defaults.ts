@@ -79,7 +79,7 @@ const iconsWithDefaults = (
     return {
       iconsUrl: input.iconsUrl || themeUrl,
       sources: input.sources,
-      isFont: input.isFont,
+      type: "font",
     };
   }
 };

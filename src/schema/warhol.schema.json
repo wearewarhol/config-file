@@ -226,9 +226,10 @@
               "type": [ "string", "null" ],
               "format": "uri"
             },
-            "isFont": {
-              "description": "Indicates if the icons are implemented using an icon font",
-              "type": "boolean"
+            "type": {
+              "description": "Indicates how the icons are implemented",
+              "type": "string",
+              "enum": [ "font" ]
             },
             "sources": {
               "description": "Selector for elements that serve as icon examples",

@@ -194,7 +194,7 @@ describe("fromObject()", () => {
         themeUrl: "https://asdf.com/theme",
         icons: {
           sources: ".icon",
-          isFont: false,
+          type: "font" as "font",
         },
       },
     };
@@ -207,7 +207,7 @@ describe("fromObject()", () => {
         icons: {
           iconsUrl: "https://asdf.com/theme",
           sources: ".icon",
-          isFont: false,
+          type: "font",
         },
       },
       utils: null,
@@ -223,7 +223,7 @@ describe("fromObject()", () => {
         icons: {
           iconsUrl: "https://asdf.com/theme/icons",
           sources: ".icon",
-          isFont: false,
+          type: "font" as "font",
         },
       },
     };
@@ -236,7 +236,7 @@ describe("fromObject()", () => {
         icons: {
           iconsUrl: "https://asdf.com/theme/icons",
           sources: ".icon",
-          isFont: false,
+          type: "font",
         },
       },
       utils: null,
@@ -262,7 +262,7 @@ describe("fromObject()", () => {
         icons: {
           iconsUrl: "https://warhol.io/components/theme/icons",
           sources: ".icon",
-          isFont: true,
+          type: "font" as "font",
         },
       },
       utils: {
@@ -301,7 +301,7 @@ describe("fromObject()", () => {
         icons: {
           iconsUrl: "https://warhol.io/components/theme/icons",
           sources: ".icon",
-          isFont: true,
+          type: "font",
         },
       },
       utils: {

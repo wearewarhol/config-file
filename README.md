@@ -24,7 +24,7 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
     "icons": {
       "iconsUrl": "https://foo.com/components/theme/icons",
       "sources": ".icon",
-      "isFont": true
+      "type": "font"
     }
   },
   "utils": {

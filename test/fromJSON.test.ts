@@ -28,7 +28,7 @@ describe("fromJSON()", () => {
         },
         "icons": {
           "sources": ".icon",
-          "isFont": true
+          "type": "font"
         }
       }
     }`;
@@ -49,7 +49,7 @@ describe("fromJSON()", () => {
         icons: {
           iconsUrl: "https://example.com/components",
           sources: ".icon",
-          isFont: true,
+          type: "font",
         },
       },
       utils: {

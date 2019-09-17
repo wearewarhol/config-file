@@ -13,7 +13,7 @@ export type ThemeTypographyConfiguration = {
 export type ThemeIconsConfiguration = {
   iconsUrl: string | null;
   sources: string;
-  isFont: boolean;
+  type: "font";
 } | null;
 
 export type ThemeConfiguration = {
