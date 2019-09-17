@@ -1,6 +1,6 @@
-//
+// Check for problems in config files that JSON schema can't catch
 
-import { where, enumerate, Parameter } from "@warhol/utilities";
+import { enumerate, Parameter } from "@warhol/utilities";
 import { NonsensicalConfigError } from "./errors";
 import { withDefaults } from "./defaults";
 
