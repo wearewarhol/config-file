@@ -11,16 +11,16 @@ describe("schema validation for utils", () => {
   it("requires a non-null utils url when there's no pattern lib url", () => {
     expect(
       () => fromObject({ utils: { sources: [{ type: "rule", selector: ".foo" }] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ patternLibUrl: null, utils: { sources: [{ type: "rule", selector: ".foo" }] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ patternLibUrl: null, utils: { utilsUrl: null, sources: [{ type: "rule", selector: ".foo" }] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ utils: { utilsUrl: null, sources: [{ type: "rule", selector: ".foo" }] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ utils: { utilsUrl: "http://example.com", sources: [{ type: "rule", selector: ".foo" }] } }),
     ).not.toThrow();
@@ -50,10 +50,10 @@ describe("schema validation for utils", () => {
   it("requires type and selector fields on utils", () => {
     expect(
       () => fromObject({ utils: { utilsUrl: "http://example.com", sources: [{} as any] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ utils: { utilsUrl: "http://example.com", sources: [{ type: "rule" } as any] } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ utils: { utilsUrl: "http://example.com", sources: [{ type: "rule", selector: ".foo" }] } }),
     ).not.toThrow();
@@ -75,12 +75,13 @@ describe("schema validation for utils", () => {
           sources: [{ name: "", type: "rule", selector: ".foo" }],
         },
       }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
   });
 
-  it("allows non-empty component targets in the component restrictions on utils", () => {
+  it("allows non-empty component targets (refering to defined components) in the components field on utils", () => {
     expect(
       () => fromObject({
+        components: [{ source: ".hello", componentUrl: "http://example.com" }],
         utils: {
           utilsUrl: "http://example.com",
           sources: [{ name: "hi!", type: "rule", selector: ".foo", components: [] }],
@@ -89,6 +90,7 @@ describe("schema validation for utils", () => {
     ).not.toThrow();
     expect(
       () => fromObject({
+        components: [{ source: ".hello", componentUrl: "http://example.com" }],
         utils: {
           utilsUrl: "http://example.com",
           sources: [{ name: "hi!", type: "rule", selector: ".foo", components: [ ".hello" ] }],
@@ -99,10 +101,19 @@ describe("schema validation for utils", () => {
       () => fromObject({
         utils: {
           utilsUrl: "http://example.com",
+          sources: [{ name: "hi!", type: "rule", selector: ".foo", components: [ ".notDefined" ] }],
+        },
+      }),
+    ).toThrow(jasmine.objectContaining({ name: "NonsensicalConfigError" }));
+    expect(
+      () => fromObject({
+        components: [{ source: ".hello", componentUrl: "http://example.com" }],
+        utils: {
+          utilsUrl: "http://example.com",
           sources: [{ name: "hi!", type: "rule", selector: ".foo", components: [ "" ] }],
         },
       }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
   });
 
   it("accepts only 'rule' and 'element' as types on utils", () => {

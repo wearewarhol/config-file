@@ -10,13 +10,13 @@ describe("schema validation for icons", () => {
   it("requires a non-null icons url when there's no non-null pattern lib oder theme url", () => {
     expect(
       () => fromObject({ theme: { icons: { sources: ".a", type: "font" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ theme: { icons: { iconsUrl: null, sources: ".a", type: "font" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ theme: { themeUrl: null, icons: { iconsUrl: null, sources: ".a", type: "font" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ theme: { themeUrl: null, icons: { iconsUrl: "http://foo.org", sources: ".a", type: "font" } } }),
     ).not.toThrow();
@@ -31,7 +31,7 @@ describe("schema validation for icons", () => {
     ).not.toThrow();
     expect(
       () => fromObject({ patternLibUrl: null, theme: { themeUrl: null, icons: { iconsUrl: null, sources: ".a", type: "font" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ patternLibUrl: "http://foo.org", theme: { themeUrl: null, icons: { iconsUrl: null, sources: ".a", type: "font" } } }),
     ).not.toThrow();
@@ -40,7 +40,7 @@ describe("schema validation for icons", () => {
   it("does not accept an empty icon element selector string", () => {
     expect(
       () => fromObject({ patternLibUrl: "http://example.com", theme: { icons: { sources: "", type: "font" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ patternLibUrl: "http://example.com", theme: { icons: { sources: ".foo", type: "font" } } }),
     ).not.toThrow();

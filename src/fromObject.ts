@@ -5,8 +5,10 @@ import * as Ajv from "ajv";
 import * as betterAjvErrors from "better-ajv-errors";
 import { Parameter } from "@warhol/utilities";
 import * as schema from "./schema/warhol.schema.json";
+import { InvalidConfigError } from "./errors";
 import { withDefaults } from "./defaults";
 import { Configuration } from "./types";
+import { checkSanity } from "./sanity";
 
 const validator = new Ajv({ jsonPointers: true }).compile(schema as any);
 
@@ -21,7 +23,8 @@ export const fromObject = (
     const error = betterAjvErrors(schema, input, validator.errors, {
       format: "js",
     });
-    throw new TypeError(JSON.stringify(error));
+    throw new InvalidConfigError(JSON.stringify(error));
   }
+  checkSanity(input);
   return withDefaults(input);
 };

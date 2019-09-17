@@ -77,25 +77,25 @@ describe("fromJSON()", () => {
 
   it("expodes on empty input syntax errors for invalid input", () => {
     expect( () => fromJSON(null as any) ).toThrow(jasmine.objectContaining({
-      name: "InvalidConfigError",
+      name: "MalformedConfigError",
       message: "Input must be a JSON-encoded string, got null",
     }));
     expect( () => fromJSON(undefined as any) ).toThrow(jasmine.objectContaining({
-      name: "InvalidConfigError",
+      name: "MalformedConfigError",
       message: "Input must be a JSON-encoded string, got undefined",
     }));
     expect( () => fromJSON(``) ).toThrow(jasmine.objectContaining({
-      name: "InvalidConfigError",
+      name: "MalformedConfigError",
       message: "Input string is empty",
     }));
     expect( () => fromJSON(`  `) ).toThrow(jasmine.objectContaining({
-      name: "InvalidConfigError",
+      name: "MalformedConfigError",
       message: "Input string is empty",
     }));
   });
 
   it("throws syntax errors for invalid input", () => {
-    expect( () => fromJSON(`{{}`) ).toThrow(jasmine.objectContaining({ name: "SyntaxError" }));
+    expect( () => fromJSON(`{{}`) ).toThrow(jasmine.objectContaining({ name: "MalformedConfigError" }));
   });
 
 });

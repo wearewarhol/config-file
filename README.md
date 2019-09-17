@@ -131,9 +131,9 @@ List of components (specified by their target selector) that this utility can ap
 ### `function fromObject = (input: PartialConfiguration) => Configuration`
 
 Validates a configuration object against the schema described above and fills in
-the default values. Throws a `TypeError` if the object does not conform to the
-schema. The error's `message` property contains a JSON-encoded representation
-of the validation error thanks to [better-ajv-errors](https://github.com/atlassian/better-ajv-errors).
+the default values. Throws a `InvalidConfigError` if the object does not conform
+to the schema. The error's `message` property contains a JSON-encoded
+representation of the validation error thanks to [better-ajv-errors](https://github.com/atlassian/better-ajv-errors).
 An example:
 
 ```json
@@ -158,15 +158,22 @@ An example:
 ### `function fromJSON = (input: string) => Configuration`
 
 Parses a JSON string into an object, validates the object against the schema
-described above and fills in the default values. Throws a `SyntaxError` if the
-input is not valid JSON. Throws a `TypeError` like `fromObject()` if the object
-does not conform to the schema.
+described above and fills in the default values. Throws a
+`MalformedConfigError` if the input is not valid JSON. Throws a
+`InvalidConfigError` like `fromObject()` if the object does not conform to the
+schema.
 
 ### Exported types
 
-* `Configuration`
-* `ComponentConfiguration`
-* `ThemeConfiguration`
-* `ThemeColorsConfiguration`
-* `ThemeTypographyConfiguration`
-* `ThemeIconsConfiguration`
+  * `Configuration`
+  * `ComponentConfiguration`
+  * `ThemeConfiguration`
+  * `ThemeColorsConfiguration`
+  * `ThemeTypographyConfiguration`
+  * `ThemeIconsConfiguration`
+
+### Errors
+
+  * **`MalformedConfigError`**: Invalid JSON input
+  * **`InvalidConfigError`**: Input JSON or object does not conform to the schema. The error message is the JS output provided by the package [better-ajv-errors](https://www.npmjs.com/package/better-ajv-errors)
+  * **`NonsensicalConfigError`**: A utility definition refers to a component that has not been defined

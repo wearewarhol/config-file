@@ -10,13 +10,13 @@ describe("schema validation", () => {
   it("requires a non-null typography url when there's no non-null pattern lib oder theme url", () => {
     expect(
       () => fromObject({ theme: { typography: { sources: ".a" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ theme: { typography: { typographyUrl: null, sources: ".a" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ theme: { themeUrl: null, typography: { typographyUrl: null, sources: ".a" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ theme: { themeUrl: null, typography: { typographyUrl: "http://foo.org", sources: ".a" } } }),
     ).not.toThrow();
@@ -31,7 +31,7 @@ describe("schema validation", () => {
     ).not.toThrow();
     expect(
       () => fromObject({ patternLibUrl: null, theme: { themeUrl: null, typography: { typographyUrl: null, sources: ".a" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ patternLibUrl: "http://foo.org", theme: { themeUrl: null, typography: { typographyUrl: null, sources: ".a" } } }),
     ).not.toThrow();
@@ -40,7 +40,7 @@ describe("schema validation", () => {
   it("does not accept an empty typography element selector string", () => {
     expect(
       () => fromObject({ patternLibUrl: "http://example.com", theme: { typography: { sources: "" } } }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({ patternLibUrl: "http://example.com", theme: { typography: { sources: ".typo" } } }),
     ).not.toThrow();
@@ -57,7 +57,7 @@ describe("schema validation", () => {
           },
         },
       }),
-    ).toThrow(jasmine.objectContaining({ name: "TypeError" }));
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
       () => fromObject({
         patternLibUrl: "http://example.com",
