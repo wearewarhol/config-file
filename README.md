@@ -91,7 +91,7 @@ The `colorsUrl` field is required if neither a pattern lib URL nor a theme url h
 Configuration for theme typography with the following fields:
 
   * `sources` (`string`, required, non-empty): selector for elements that contain typography examples
-  * `properties` (list of css color properties, optional, defaults to `[ "font-family", "font-size", "font-weight", "font-style" ]`): configures the css properties that define a typography example. CSS shorthand properties like `font` are not allowed.
+  * `properties` (list of css properties, optional, defaults to `[ "font-family", "font-size", "font-weight", "font-style" ]`): configures the css properties that define a typography example. CSS shorthand properties like `font` are not allowed.
   * `typographyUrl` (`string` or `null`, optional *or required* depending on the theme and pattern lib URLs, defaults to the theme or pattern lib URL): the url for the typography examples
 
 The `typographyUrl` field is required if neither a pattern lib URL nor a theme url have been specified.
