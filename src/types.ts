@@ -32,9 +32,9 @@ export type ComponentConfiguration = {
 
 export type Util = {
   readonly type: "rule" | "element";
-  readonly selector: string;
-  readonly name: string | null;
-  readonly components: readonly string[];
+  selector: string;
+  name: string | null;
+  components: string[];
 };
 
 export type UtilsConfiguration = {
