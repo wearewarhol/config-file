@@ -1,4 +1,5 @@
-import { fromJSON } from "../src/index";
+import { fromJSON, Configuration } from "../src/index";
+
 
 describe("fromJSON()", () => {
 
@@ -7,7 +8,7 @@ describe("fromJSON()", () => {
       "patternLibUrl": "https://example.com/components",
       "breakpoints": [ 800, 1000 ],
       "components": [
-        { "source": ".foo", "target": "#hello" },
+        { "source": ".foo", "target": "#hello", "name": "MyFoo" },
         { "source": ".bar" }
       ],
       "utils": {
@@ -62,17 +63,93 @@ describe("fromJSON()", () => {
       },
       breakpoints: [ 800, 1000 ],
       components: [{
-        name: null,
+        name: "MyFoo",
         componentUrl: "https://example.com/components",
         target: "#hello",
         source: ".foo",
       }, {
-        name: null,
+        name: ".bar",
         componentUrl: "https://example.com/components",
         target: ".bar",
         source: ".bar",
       }],
     });
+  });
+
+  // TODO: Breaks ATM because of util's names
+  xit("can parse its own output", () => {
+    const input = `{
+      "patternLibUrl": "https://example.com/components",
+      "breakpoints": [ 800, 1000 ],
+      "components": [
+        { "source": ".foo", "target": "#hello", "name": "MyFoo" },
+        { "source": ".bar" }
+      ],
+      "utils": {
+        "sources": [
+          { "type": "rule", "selector": ".align-left" },
+          { "type": "rule", "selector": ".align-right", "name": "Right", "components": [ ".bar" ] },
+          { "type": "element", "selector": ".shadow" }
+        ]
+      },
+      "theme": {
+        "colors": {
+          "sources": ".swatch",
+          "properties": [ "background-color", "color" ]
+        },
+        "typography": {
+          "sources": ".typo",
+          "properties": [ "font-family", "font-size", "font-style", "font-weight", "color" ]
+        },
+        "icons": {
+          "sources": ".icon",
+          "type": "font"
+        }
+      }
+    }`;
+    const expected: Configuration = {
+      patternLibUrl: "https://example.com/components",
+      theme: {
+        themeUrl: "https://example.com/components",
+        colors: {
+          colorsUrl: "https://example.com/components",
+          sources: ".swatch",
+          properties: [ "background-color", "color" ],
+        },
+        typography: {
+          typographyUrl: "https://example.com/components",
+          sources: ".typo",
+          properties: [ "font-family", "font-size", "font-style", "font-weight", "color" ],
+        },
+        icons: {
+          iconsUrl: "https://example.com/components",
+          sources: ".icon",
+          type: "font",
+        },
+      },
+      utils: {
+        utilsUrl: "https://example.com/components",
+        sources: [
+          { type: "rule", selector: ".align-left", name: null, components: [] },
+          { type: "rule", selector: ".align-right", name: "Right", components: [ ".bar" ] },
+          { type: "element", selector: ".shadow", name: null, components: [] },
+        ],
+      },
+      breakpoints: [ 800, 1000 ],
+      components: [{
+        name: "MyFoo",
+        componentUrl: "https://example.com/components",
+        target: "#hello",
+        source: ".foo",
+      }, {
+        name: ".bar",
+        componentUrl: "https://example.com/components",
+        target: ".bar",
+        source: ".bar",
+      }],
+    };
+    expect(fromJSON(input)).toEqual(expected);
+    expect(fromJSON(JSON.stringify(fromJSON(input)))).toEqual(expected);
   });
 
   it("expodes on empty input syntax errors for invalid input", () => {

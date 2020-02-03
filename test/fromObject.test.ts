@@ -1,4 +1,4 @@
-import { fromObject } from "../src/index";
+import { fromObject, Configuration } from "../src/index";
 
 
 describe("fromObject()", () => {
@@ -36,12 +36,55 @@ describe("fromObject()", () => {
       utils: null,
       breakpoints: [ 1000 ],
       components: [{
-        name: null,
+        name: ".foo",
         componentUrl: "https://example.com",
         target: ".foo",
         source: ".foo",
       }, {
-        name: null,
+        name: ".bar",
+        componentUrl: "https://example.com",
+        target: ".bar",
+        source: ".bar",
+      }],
+    });
+  });
+
+  it("accepts a minimal configuration containing complete component definitions and a pattern lib URL", () => {
+    const input = {
+      patternLibUrl: "https://example.com",
+      components: [{ source: ".foo", target: ".bar", name: "MyFoo", componentUrl: "https://example.com" }],
+    };
+    expect(fromObject(input)).toEqual({
+      patternLibUrl: "https://example.com",
+      theme: null,
+      utils: null,
+      breakpoints: [ 1000 ],
+      components: [{
+        source: ".foo",
+        target: ".bar",
+        name: "MyFoo",
+        componentUrl: "https://example.com",
+      }],
+    });
+  });
+
+  it("accepts component fields with undefined as values", () => {
+    const input = {
+      patternLibUrl: "https://example.com",
+      components: [{ source: ".foo", target: undefined }, { source: ".bar", name: undefined }],
+    };
+    expect(fromObject(input)).toEqual({
+      patternLibUrl: "https://example.com",
+      theme: null,
+      utils: null,
+      breakpoints: [ 1000 ],
+      components: [{
+        name: ".foo",
+        componentUrl: "https://example.com",
+        target: ".foo",
+        source: ".foo",
+      }, {
+        name: ".bar",
         componentUrl: "https://example.com",
         target: ".bar",
         source: ".bar",
@@ -96,7 +139,7 @@ describe("fromObject()", () => {
       },
       utils: null,
       breakpoints: [ 1000 ],
-      components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
+      components: [{ name: ".foo", componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
   });
 
@@ -126,7 +169,7 @@ describe("fromObject()", () => {
       },
       utils: null,
       breakpoints: [ 1000 ],
-      components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
+      components: [{ name: ".foo", componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
   });
 
@@ -154,7 +197,7 @@ describe("fromObject()", () => {
       },
       utils: null,
       breakpoints: [ 1000 ],
-      components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
+      components: [{ name: ".foo", componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
   });
 
@@ -184,7 +227,7 @@ describe("fromObject()", () => {
       },
       utils: null,
       breakpoints: [ 1000 ],
-      components: [{ name: null, componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
+      components: [{ name: ".foo", componentUrl: "https://asdf.com", source: ".foo", target: ".foo" }],
     });
   });
 
@@ -313,7 +356,7 @@ describe("fromObject()", () => {
         ],
       },
       components: [{
-        name: null,
+        name: ".foo",
         componentUrl: "https://warhol.io/components",
         target: ".foo",
         source: ".foo",
@@ -324,6 +367,90 @@ describe("fromObject()", () => {
         target: ".bar",
       }],
     });
+  });
+
+  // TODO: Breaks ATM because of util's names
+  xit("can process its own output", () => {
+    const input = {
+      patternLibUrl: "https://warhol.io/components",
+      breakpoints: [ 300, 800, 1200 ],
+      theme: {
+        themeUrl: "https://warhol.io/components/theme",
+        colors: {
+          sources: ".swatch",
+          properties: [ "background-color", "color" ],
+        },
+        typography: {
+          typographyUrl: "https://warhol.io/components/theme/typography",
+          sources: ".typo",
+        },
+        icons: {
+          iconsUrl: "https://warhol.io/components/theme/icons",
+          sources: ".icon",
+          type: "font" as "font",
+        },
+      },
+      utils: {
+        utilsUrl: "https://warhol.io/components/utils",
+        sources: [
+          { type: "rule" as const, selector: ".align-left" },
+          { type: "rule" as const, selector: ".align-right", name: "Right" },
+          { type: "element" as const, selector: ".shadow", components: [ ".foo", ".bar" ] },
+        ],
+      },
+      components: [
+        { source: ".foo" },
+        {
+          name: "Magic Slider",
+          componentUrl: "https://google.de/",
+          source: ".slider",
+          target: ".bar",
+        },
+      ],
+    };
+    const expected: Configuration = {
+      patternLibUrl: "https://warhol.io/components",
+      breakpoints: [ 300, 800, 1200 ],
+      theme: {
+        themeUrl: "https://warhol.io/components/theme",
+        colors: {
+          colorsUrl: "https://warhol.io/components/theme",
+          sources: ".swatch",
+          properties: [ "background-color", "color" ],
+        },
+        typography: {
+          typographyUrl: "https://warhol.io/components/theme/typography",
+          sources: ".typo",
+          properties: [ "font-family", "font-size", "font-weight", "font-style" ],
+        },
+        icons: {
+          iconsUrl: "https://warhol.io/components/theme/icons",
+          sources: ".icon",
+          type: "font",
+        },
+      },
+      utils: {
+        utilsUrl: "https://warhol.io/components/utils",
+        sources: [
+          { type: "rule", selector: ".align-left", name: null, components: [] },
+          { type: "rule", selector: ".align-right", name: "Right", components: [] },
+          { type: "element", selector: ".shadow", name: null, components: [ ".foo", ".bar" ] },
+        ],
+      },
+      components: [{
+        name: ".foo",
+        componentUrl: "https://warhol.io/components",
+        target: ".foo",
+        source: ".foo",
+      }, {
+        name: "Magic Slider",
+        componentUrl: "https://google.de/",
+        source: ".slider",
+        target: ".bar",
+      }],
+    };
+    expect(fromObject(input)).toEqual(expected);
+    expect(fromObject(fromObject(input))).toEqual(expected);
   });
 
 });

@@ -25,7 +25,7 @@ export type ThemeConfiguration = {
 
 export type ComponentConfiguration = {
   componentUrl: string | null;
-  name: string | null;
+  name: string;
   source: string;
   target: string;
 };
