@@ -43,6 +43,10 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
 }
 ```
 
+## Notable revisions
+
+* **v8.0.0**: `name` on components and utils no longer defaults to `null` but rather to `source` and `selector` respectivly, fixing [#10](https://github.com/wearewarhol/config-file/issues/10)
+
 ## Schema
 
 ### Field `patternLibUrl` (optional, `string` or `null`, defaults to `null`)
@@ -63,10 +67,10 @@ are taken.
 List of component definitions. A component definiton is an object with the
 following fields:
 
-  * `source` (`string`, required, non-empty): source selector
-  * `target` (`string`, optional, non-empty): target selector, defaults to the source selector
-  * `name` (`string` or `null`, optional, non-empty): component name, defaults to `null`
-  * `componentUrl` (`string` or `null`, optional *or required* depending on the pattern lib URL): this component's own URL, defaults to the pattern lib URL. If no pattern lib URL was specified, this field is required for each component.
+* `source` (`string`, required, non-empty): source selector
+* `target` (`string`, optional, non-empty): target selector, defaults to the source selector
+* `name` (`string`, optional, non-empty): component name, defaults to to the source selector
+* `componentUrl` (`string` or `null`, optional *or required* depending on the pattern lib URL): this component's own URL, defaults to the pattern lib URL. If no pattern lib URL was specified, this field is required for each component.
 
 ### Field `theme` (optional, `object` or `null`, defaults to `null`)
 
@@ -118,9 +122,9 @@ Utils URL, is only required if there is no top-level `patternLibUrl`.
 
 Sources for utilities. Each utility is described by an object:
 
-  * `type` (either `"rule"` or `"element"`): whether to read the utility styles from an element or from a css rule
-  * `selector` (`string`, required, non-empty): the selector for the the style utility
-  * `name` (`string`, optional, non-empty, defaults to `null`): utility name name, defaults to null
+* `type` (either `"rule"` or `"element"`): whether to read the utility styles from an element or from a css rule
+* `selector` (`string`, required, non-empty): the selector for the the style utility
+* `name` (`string`, optional, non-empty, defaults to `selector`): utility name name, defaults to `selector`
 
 ### Field `utils.components` (optional, array of strings)
 

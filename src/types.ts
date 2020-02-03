@@ -25,7 +25,7 @@ export type ThemeConfiguration = {
 
 export type ComponentConfiguration = {
   componentUrl: string | null;
-  name: string | null;
+  name: string;
   source: string;
   target: string;
 };
@@ -33,7 +33,7 @@ export type ComponentConfiguration = {
 export type Util = {
   readonly type: "rule" | "element";
   selector: string;
-  name: string | null;
+  name: string;
   components: string[];
 };
 

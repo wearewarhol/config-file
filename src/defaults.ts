@@ -127,7 +127,7 @@ const utilsWithDefaults = (
       ? inputUtils.utilsUrl || patternLibUrl || null
       : patternLibUrl || null;
     const sources = inputUtils.sources.map( (definition) => {
-      const { type, selector, components = [], name = null } = definition;
+      const { type, selector, components = [], name = selector } = definition;
       return { type, selector, name, components };
     });
     return { utilsUrl, sources };
@@ -156,9 +156,9 @@ export const withDefaults = (input: {
       ? input.components.flatMap( (component) => {
           return (component) ? [{
             componentUrl: component.componentUrl || patternLibUrl || null,
-            name: component.name || null,
-            source: component.source  as string,
-            target: component.target || component.source as string,
+            source: component.source,
+            name: component.name || component.source,
+            target: component.target || component.source,
           }] : [];
         })
       : [],
