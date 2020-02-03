@@ -56,9 +56,9 @@ describe("fromJSON()", () => {
       utils: {
         utilsUrl: "https://example.com/components",
         sources: [
-          { type: "rule", selector: ".align-left", name: null, components: [] },
+          { type: "rule", selector: ".align-left", name: ".align-left", components: [] },
           { type: "rule", selector: ".align-right", name: "Right", components: [ ".bar" ] },
-          { type: "element", selector: ".shadow", name: null, components: [] },
+          { type: "element", selector: ".shadow", name: ".shadow", components: [] },
         ],
       },
       breakpoints: [ 800, 1000 ],
@@ -76,8 +76,7 @@ describe("fromJSON()", () => {
     });
   });
 
-  // TODO: Breaks ATM because of util's names
-  xit("can parse its own output", () => {
+  it("can parse its own output", () => {
     const input = `{
       "patternLibUrl": "https://example.com/components",
       "breakpoints": [ 800, 1000 ],
@@ -130,9 +129,9 @@ describe("fromJSON()", () => {
       utils: {
         utilsUrl: "https://example.com/components",
         sources: [
-          { type: "rule", selector: ".align-left", name: null, components: [] },
+          { type: "rule", selector: ".align-left", name: ".align-left", components: [] },
           { type: "rule", selector: ".align-right", name: "Right", components: [ ".bar" ] },
-          { type: "element", selector: ".shadow", name: null, components: [] },
+          { type: "element", selector: ".shadow", name: ".shadow", components: [] },
         ],
       },
       breakpoints: [ 800, 1000 ],

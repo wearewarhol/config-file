@@ -350,9 +350,9 @@ describe("fromObject()", () => {
       utils: {
         utilsUrl: "https://warhol.io/components/utils",
         sources: [
-          { type: "rule", selector: ".align-left", name: null, components: [] },
+          { type: "rule", selector: ".align-left", name: ".align-left", components: [] },
           { type: "rule", selector: ".align-right", name: "Right", components: [] },
-          { type: "element", selector: ".shadow", name: null, components: [ ".foo", ".bar" ] },
+          { type: "element", selector: ".shadow", name: ".shadow", components: [ ".foo", ".bar" ] },
         ],
       },
       components: [{
@@ -369,8 +369,7 @@ describe("fromObject()", () => {
     });
   });
 
-  // TODO: Breaks ATM because of util's names
-  xit("can process its own output", () => {
+  it("can process its own output", () => {
     const input = {
       patternLibUrl: "https://warhol.io/components",
       breakpoints: [ 300, 800, 1200 ],
@@ -432,9 +431,9 @@ describe("fromObject()", () => {
       utils: {
         utilsUrl: "https://warhol.io/components/utils",
         sources: [
-          { type: "rule", selector: ".align-left", name: null, components: [] },
+          { type: "rule", selector: ".align-left", name: ".align-left", components: [] },
           { type: "rule", selector: ".align-right", name: "Right", components: [] },
-          { type: "element", selector: ".shadow", name: null, components: [ ".foo", ".bar" ] },
+          { type: "element", selector: ".shadow", name: ".shadow", components: [ ".foo", ".bar" ] },
         ],
       },
       components: [{

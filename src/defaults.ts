@@ -127,7 +127,7 @@ const utilsWithDefaults = (
       ? inputUtils.utilsUrl || patternLibUrl || null
       : patternLibUrl || null;
     const sources = inputUtils.sources.map( (definition) => {
-      const { type, selector, components = [], name = null } = definition;
+      const { type, selector, components = [], name = selector } = definition;
       return { type, selector, name, components };
     });
     return { utilsUrl, sources };

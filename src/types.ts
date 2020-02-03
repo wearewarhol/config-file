@@ -33,7 +33,7 @@ export type ComponentConfiguration = {
 export type Util = {
   readonly type: "rule" | "element";
   selector: string;
-  name: string | null;
+  name: string;
   components: string[];
 };
 
