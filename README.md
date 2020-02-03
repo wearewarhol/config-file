@@ -43,6 +43,10 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
 }
 ```
 
+## Notable revisions
+
+* **v8.0.0**: `name` on components and utils no longer defaults to `null` but rather to `source` and `selector` respectivly, fixing [#10](https://github.com/wearewarhol/config-file/issues/10)
+
 ## Schema
 
 ### Field `patternLibUrl` (optional, `string` or `null`, defaults to `null`)
