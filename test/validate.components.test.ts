@@ -13,7 +13,25 @@ describe("schema validation", () => {
       () => fromObject({ components: [{ source: ".foo" }] }),
     ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
     expect(
+      () => fromObject({ patternLibUrl: null, components: [{ source: ".foo" }] }),
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
+    expect(
+      () => fromObject({ components: [{ source: ".foo", componentUrl: null }] }),
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
+    expect(
+      () => fromObject({ patternLibUrl: null, components: [{ source: ".foo", componentUrl: null }] }),
+    ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
+    expect(
+      () => fromObject({ patternLibUrl: "https://example.com", components: [{ source: ".foo" }] }),
+    ).not.toThrow();
+    expect(
+      () => fromObject({ patternLibUrl: "https://example.com", components: [{ source: ".foo", componentUrl: null }] }),
+    ).not.toThrow();
+    expect(
       () => fromObject({ components: [{ source: ".foo", componentUrl: "https://example.com" }] }),
+    ).not.toThrow();
+    expect(
+      () => fromObject({ patternLibUrl: "https://example.com", components: [{ source: ".foo", componentUrl: "https://example.com" }] }),
     ).not.toThrow();
   });
 

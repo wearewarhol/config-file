@@ -14,7 +14,12 @@
 
     "no-patternLib-url-requires-component-url": {
       "if": {
-        "required": [ "patternLibUrl" ]
+        "required": [ "patternLibUrl" ],
+        "properties": {
+          "patternLibUrl": {
+            "type": "string"
+          }
+        }
       },
       "then": {
         "properties": {
@@ -29,7 +34,12 @@
         "properties": {
           "components": {
             "items": {
-              "required": [ "source", "componentUrl" ]
+              "required": [ "source", "componentUrl" ],
+              "properties": {
+                "componentUrl": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -295,7 +305,7 @@
         "properties": {
           "componentUrl": {
             "description": "The URL to find the component on, if different from the main component library url",
-            "type": "string",
+            "type": [ "string", "null" ],
             "format": "uri"
           },
           "name": {
