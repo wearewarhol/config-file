@@ -78,7 +78,7 @@ describe("schema validation for utils", () => {
     ).toThrow(jasmine.objectContaining({ name: "InvalidConfigError" }));
   });
 
-  it("allows non-empty component targets (refering to defined components) in the components field on utils", () => {
+  it("allows non-empty component targets (referring to defined components) in the components field on utils", () => {
     expect(
       () => fromObject({
         components: [{ source: ".hello", componentUrl: "http://example.com" }],
