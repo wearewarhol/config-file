@@ -44,6 +44,12 @@ describe("schema validation", () => {
     ).not.toThrow();
   });
 
+  it("does accept missing component names", () => {
+    expect(
+      () => fromObject({ patternLibUrl: "http://example.com", components: [{ source: ".foo" }] }),
+    ).not.toThrow();
+  });
+
   it("complains about duplicate sources", () => {
     expect(
       () => fromObject({
