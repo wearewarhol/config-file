@@ -208,6 +208,7 @@ schema.
 * `ThemeColorsConfiguration`
 * `ThemeTypographyConfiguration`
 * `ThemeIconsConfiguration`
+* `CookieConfiguration`
 
 ### Errors
 

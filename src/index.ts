@@ -8,4 +8,5 @@ export type {
   ThemeColorsConfiguration,
   ThemeTypographyConfiguration,
   ThemeIconsConfiguration,
+  CookieConfiguration,
 } from "./types";
