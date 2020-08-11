@@ -44,6 +44,7 @@ export type UtilsConfiguration = {
 
 export type Configuration = {
   patternLibUrl: string | null;
+  patternLibHeaders: Record<string, string>;
   breakpoints: number[];
   components: ComponentConfiguration[];
   theme: ThemeConfiguration;

@@ -7,6 +7,7 @@ describe("fromObject()", () => {
     const input = {};
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -18,6 +19,7 @@ describe("fromObject()", () => {
     const input = { components: null };
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -32,6 +34,89 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
+      patternLibHeaders: {},
+      theme: null,
+      utils: null,
+      breakpoints: [ 1000 ],
+      components: [{
+        name: ".foo",
+        componentUrl: "https://example.com",
+        target: ".foo",
+        source: ".foo",
+      }, {
+        name: ".bar",
+        componentUrl: "https://example.com",
+        target: ".bar",
+        source: ".bar",
+      }],
+    });
+  });
+
+  it("accepts a minimal configuration with a null value for patternLibHeaders", () => {
+    const input = {
+      patternLibUrl: "https://example.com",
+      patternLibHeaders: null,
+      components: [{ source: ".foo" }, { source: ".bar" }],
+    };
+    expect(fromObject(input)).toEqual({
+      patternLibUrl: "https://example.com",
+      patternLibHeaders: {},
+      theme: null,
+      utils: null,
+      breakpoints: [ 1000 ],
+      components: [{
+        name: ".foo",
+        componentUrl: "https://example.com",
+        target: ".foo",
+        source: ".foo",
+      }, {
+        name: ".bar",
+        componentUrl: "https://example.com",
+        target: ".bar",
+        source: ".bar",
+      }],
+    });
+  });
+
+  it("accepts a minimal configuration with an empty value for patternLibHeaders", () => {
+    const input = {
+      patternLibUrl: "https://example.com",
+      patternLibHeaders: {},
+      components: [{ source: ".foo" }, { source: ".bar" }],
+    };
+    expect(fromObject(input)).toEqual({
+      patternLibUrl: "https://example.com",
+      patternLibHeaders: {},
+      theme: null,
+      utils: null,
+      breakpoints: [ 1000 ],
+      components: [{
+        name: ".foo",
+        componentUrl: "https://example.com",
+        target: ".foo",
+        source: ".foo",
+      }, {
+        name: ".bar",
+        componentUrl: "https://example.com",
+        target: ".bar",
+        source: ".bar",
+      }],
+    });
+  });
+
+  it("accepts a minimal configuration with non-empty patternLibHeaders", () => {
+    const input = {
+      patternLibUrl: "https://example.com",
+      patternLibHeaders: {
+        "DNT": "1"
+      },
+      components: [{ source: ".foo" }, { source: ".bar" }],
+    };
+    expect(fromObject(input)).toEqual({
+      patternLibUrl: "https://example.com",
+      patternLibHeaders: {
+        "DNT": "1"
+      },
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -56,6 +141,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
+      patternLibHeaders: {},
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -75,6 +161,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
+      patternLibHeaders: {},
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -103,6 +190,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -127,6 +215,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: {
@@ -157,6 +246,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: {
         themeUrl: "https://example.com/patternlib/theme",
         colors: {
@@ -185,6 +275,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -215,6 +306,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: {
         themeUrl: "https://example.com/patternlib/theme",
         colors: null,
@@ -243,6 +335,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -272,6 +365,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
+      patternLibHeaders: {},
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -328,6 +422,7 @@ describe("fromObject()", () => {
     };
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://warhol.io/components",
+      patternLibHeaders: {},
       breakpoints: [ 300, 800, 1200 ],
       theme: {
         themeUrl: "https://warhol.io/components/theme",
@@ -409,6 +504,7 @@ describe("fromObject()", () => {
     };
     const expected: Configuration = {
       patternLibUrl: "https://warhol.io/components",
+      patternLibHeaders: {},
       breakpoints: [ 300, 800, 1200 ],
       theme: {
         themeUrl: "https://warhol.io/components/theme",

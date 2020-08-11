@@ -152,6 +152,13 @@
       "type": [ "string", "null" ],
       "format": "uri"
     },
+    "patternLibHeaders": {
+      "description": "Headers to set when accessing the pattern library",
+      "type": [ "object", "null" ],
+      "propertyNames": {
+        "type": "string"
+      }
+    },
     "breakpoints": {
       "description": "The screen widths with which to take snapshots",
       "type": [ "array", "null" ],

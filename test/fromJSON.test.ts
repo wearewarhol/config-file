@@ -6,6 +6,9 @@ describe("fromJSON()", () => {
   it("parses a valid full config", () => {
     const input = `{
       "patternLibUrl": "https://example.com/components",
+      "patternLibHeaders": {
+        "DNT": "1"
+      },
       "breakpoints": [ 800, 1000 ],
       "components": [
         { "source": ".foo", "target": "#hello", "name": "MyFoo" },
@@ -35,6 +38,9 @@ describe("fromJSON()", () => {
     }`;
     expect(fromJSON(input)).toEqual({
       patternLibUrl: "https://example.com/components",
+      patternLibHeaders: {
+        "DNT": "1"
+      },
       theme: {
         themeUrl: "https://example.com/components",
         colors: {
@@ -79,6 +85,9 @@ describe("fromJSON()", () => {
   it("can parse its own output", () => {
     const input = `{
       "patternLibUrl": "https://example.com/components",
+      "patternLibHeaders": {
+        "DNT": "1"
+      },
       "breakpoints": [ 800, 1000 ],
       "components": [
         { "source": ".foo", "target": "#hello", "name": "MyFoo" },
@@ -108,6 +117,9 @@ describe("fromJSON()", () => {
     }`;
     const expected: Configuration = {
       patternLibUrl: "https://example.com/components",
+      patternLibHeaders: {
+        "DNT": "1"
+      },
       theme: {
         themeUrl: "https://example.com/components",
         colors: {

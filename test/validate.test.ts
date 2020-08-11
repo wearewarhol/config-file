@@ -9,6 +9,7 @@ describe("schema validation", () => {
   it("accepts an object full of nulls as input", () => {
     expect( () => fromObject({
       patternLibUrl: null,
+      patternLibHeaders: null,
       breakpoints: null,
       theme: null,
       components: null,
@@ -19,6 +20,7 @@ describe("schema validation", () => {
   it("accepts an object with a theme full of nulls as input", () => {
     expect( () => fromObject({
       patternLibUrl: null,
+      patternLibHeaders: null,
       breakpoints: null,
       theme: {
         colors: null,
@@ -28,6 +30,18 @@ describe("schema validation", () => {
       components: null,
       utils: null,
     }) ).not.toThrow();
+  });
+
+  it("does not accept an object with additional properties", () => {
+    expect( () => fromObject({
+      foo: 42,
+      patternLibUrl: null,
+      patternLibHeaders: null,
+      breakpoints: null,
+      theme: null,
+      components: null,
+      utils: null,
+    } as any) ).toThrow();
   });
 
 });

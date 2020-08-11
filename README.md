@@ -7,6 +7,9 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
 ```json
 {
   "patternLibUrl": "https://foo.com/components",
+  "patternLibHeaders": {
+    "DNT": "1"
+  },
   "breakpoints": [
     1280, 1024, 800, 400, 280
   ],
@@ -56,15 +59,19 @@ overruled for each component and theme configuration with their own URLs. If the
 pattern library URL is not specified, components and themes (or sub-sections of
 themes) *must* provide their own URLs.
 
+### Field `patternLibUrlHeaders` (optional, `Record<string, string>` or `null`, defaults to `{}`)
+
+Header to set when accessing the pattern library.
+
 ### Field `breakpoints` (optional, `number[]` or `null`, defaults to `[ 1000 ]`)
 
 Breakpoints for the pattern library (and the production page that implements the
-pattern lib), contols the screen widths at which snapshots for the components
+pattern lib), controls the screen widths at which snapshots for the components
 are taken.
 
 ### Field `components` (optional, `ComponentDefinition[]` or `null`, defaults to `[]`)
 
-List of component definitions. A component definiton is an object with the
+List of component definitions. A component definition is an object with the
 following fields:
 
 * `source` (`string`, required, non-empty): source selector
@@ -84,9 +91,9 @@ Theme URL, can be overruled by the URLs specified in the theme's sub-properties.
 
 Configuration for theme colors with the following fields:
 
-  * `sources` (`string`, required, non-empty): selector for color source elements
-  * `properties` (enum of css color properties, optional, defaults to `[ "background-color" ]`): configures the css properties to use as a color source. CSS shorthand properties like `background` are not allowed.
-  * `colorsUrl` (`string` or `null`, optional *or required* depending on the theme and pattern lib URLs, defaults to the theme or pattern lib URL): the url for the color sources
+* `sources` (`string`, required, non-empty): selector for color source elements
+* `properties` (enum of css color properties, optional, defaults to `[ "background-color" ]`): configures the css properties to use as a color source. CSS shorthand properties like `background` are not allowed.
+* `colorsUrl` (`string` or `null`, optional *or required* depending on the theme and pattern lib URLs, defaults to the theme or pattern lib URL): the url for the color sources
 
 The `colorsUrl` field is required if neither a pattern lib URL nor a theme url have been specified.
 
@@ -94,9 +101,9 @@ The `colorsUrl` field is required if neither a pattern lib URL nor a theme url h
 
 Configuration for theme typography with the following fields:
 
-  * `sources` (`string`, required, non-empty): selector for elements that contain typography examples
-  * `properties` (list of css properties, optional, defaults to `[ "font-family", "font-size", "font-weight", "font-style" ]`): configures the css properties that define a typography example. CSS shorthand properties like `font` are not allowed.
-  * `typographyUrl` (`string` or `null`, optional *or required* depending on the theme and pattern lib URLs, defaults to the theme or pattern lib URL): the url for the typography examples
+* `sources` (`string`, required, non-empty): selector for elements that contain typography examples
+* `properties` (list of css properties, optional, defaults to `[ "font-family", "font-size", "font-weight", "font-style" ]`): configures the css properties that define a typography example. CSS shorthand properties like `font` are not allowed.
+* `typographyUrl` (`string` or `null`, optional *or required* depending on the theme and pattern lib URLs, defaults to the theme or pattern lib URL): the url for the typography examples
 
 The `typographyUrl` field is required if neither a pattern lib URL nor a theme url have been specified.
 
@@ -104,9 +111,9 @@ The `typographyUrl` field is required if neither a pattern lib URL nor a theme u
 
 Configuration for theme icons with the following fields:
 
-  * `sources` (`string`, required, non-empty): selector for elements that contain icons
-  * `iconsUrl` (`string` or `null`, optional *or required* depending on the theme and pattern lib URLs, defaults to the theme or pattern lib URL): the url for the icon examples
-  * `type` (`"font"`, required): defines if icons are created using an icon font or in some other way (no other way is supported at this moment)
+* `sources` (`string`, required, non-empty): selector for elements that contain icons
+* `iconsUrl` (`string` or `null`, optional *or required* depending on the theme and pattern lib URLs, defaults to the theme or pattern lib URL): the url for the icon examples
+* `type` (`"font"`, required): defines if icons are created using an icon font or in some other way (no other way is supported at this moment)
 
 The `iconsUrl` field is required if neither a pattern lib URL nor a theme url have been specified.
 
@@ -169,15 +176,15 @@ schema.
 
 ### Exported types
 
-  * `Configuration`
-  * `ComponentConfiguration`
-  * `ThemeConfiguration`
-  * `ThemeColorsConfiguration`
-  * `ThemeTypographyConfiguration`
-  * `ThemeIconsConfiguration`
+* `Configuration`
+* `ComponentConfiguration`
+* `ThemeConfiguration`
+* `ThemeColorsConfiguration`
+* `ThemeTypographyConfiguration`
+* `ThemeIconsConfiguration`
 
 ### Errors
 
-  * **`MalformedConfigError`**: Invalid JSON input
-  * **`InvalidConfigError`**: Input JSON or object does not conform to the schema. The error message is the JS output provided by the package [better-ajv-errors](https://www.npmjs.com/package/better-ajv-errors)
-  * **`NonsensicalConfigError`**: A utility definition refers to a component that has not been defined
+* **`MalformedConfigError`**: Invalid JSON input
+* **`InvalidConfigError`**: Input JSON or object does not conform to the schema. The error message is the JS output provided by the package [better-ajv-errors](https://www.npmjs.com/package/better-ajv-errors)
+* **`NonsensicalConfigError`**: A utility definition refers to a component that has not been defined
