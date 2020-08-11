@@ -1,6 +1,6 @@
 export { fromObject } from "./fromObject";
 export { fromJSON } from "./fromJSON";
-export {
+export type {
   Configuration,
   ComponentConfiguration,
   UtilsConfiguration,

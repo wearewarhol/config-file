@@ -7,8 +7,8 @@
   "author": "peter@peterkroener.de",
   "license": "MIT",
   "scripts": {
-    "lint": "tslint -p .",
-    "test": "ts-node node_modules/.bin/jasmine 'test/*.test.ts'",
+    "lint": "eslint src --ext .ts",
+    "test": "ts-node --compiler-options='{\"module\":\"commonjs\"}' node_modules/.bin/jasmine 'test/*.test.ts'",
     "test:dev": "nodemon --watch src --watch test -e ts,json --exec 'yarn test'",
     "clean": "rm -rf dist && rm -rf temp",
     "copy": "cp -r src/schema dist/cjs && cp -r src/schema dist/esm",
@@ -27,12 +27,13 @@
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "@types/jasmine": "^3.5.12",
-    "@warhol/tsconfig": "^1.0.0",
+    "@warhol/tsconfig": "^2.0.0",
     "@warhol/utilities": "^9.2.2",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "^2.22.0",
     "jasmine": "^3.6.1",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
-    "tslint": "^6.1.3",
     "typescript": "^3.9.7"
   }
 }

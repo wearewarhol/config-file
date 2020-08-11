@@ -1,8 +1,6 @@
 import { fromJSON, Configuration } from "../src/index";
 
-
 describe("fromJSON()", () => {
-
   it("parses a valid full config", () => {
     const input = `{
       "patternLibUrl": "https://example.com/components",
@@ -45,25 +43,33 @@ describe("fromJSON()", () => {
     expect(fromJSON(input)).toEqual({
       patternLibUrl: "https://example.com/components",
       patternLibHeaders: {
-        "DNT": "1"
+        DNT: "1",
       },
-      patternLibCookies: [{
-        name: "Hello",
-        value: "42",
-        expires: 9000,
-        sameSite: "Lax"
-      }],
+      patternLibCookies: [
+        {
+          name: "Hello",
+          value: "42",
+          expires: 9000,
+          sameSite: "Lax",
+        },
+      ],
       theme: {
         themeUrl: "https://example.com/components",
         colors: {
           colorsUrl: "https://example.com/components",
           sources: ".swatch",
-          properties: [ "background-color", "color" ],
+          properties: ["background-color", "color"],
         },
         typography: {
           typographyUrl: "https://example.com/components",
           sources: ".typo",
-          properties: [ "font-family", "font-size", "font-style", "font-weight", "color" ],
+          properties: [
+            "font-family",
+            "font-size",
+            "font-style",
+            "font-weight",
+            "color",
+          ],
         },
         icons: {
           iconsUrl: "https://example.com/components",
@@ -74,23 +80,41 @@ describe("fromJSON()", () => {
       utils: {
         utilsUrl: "https://example.com/components",
         sources: [
-          { type: "rule", selector: ".align-left", name: ".align-left", components: [] },
-          { type: "rule", selector: ".align-right", name: "Right", components: [ ".bar" ] },
-          { type: "element", selector: ".shadow", name: ".shadow", components: [] },
+          {
+            type: "rule",
+            selector: ".align-left",
+            name: ".align-left",
+            components: [],
+          },
+          {
+            type: "rule",
+            selector: ".align-right",
+            name: "Right",
+            components: [".bar"],
+          },
+          {
+            type: "element",
+            selector: ".shadow",
+            name: ".shadow",
+            components: [],
+          },
         ],
       },
-      breakpoints: [ 800, 1000 ],
-      components: [{
-        name: "MyFoo",
-        componentUrl: "https://example.com/components",
-        target: "#hello",
-        source: ".foo",
-      }, {
-        name: ".bar",
-        componentUrl: "https://example.com/components",
-        target: ".bar",
-        source: ".bar",
-      }],
+      breakpoints: [800, 1000],
+      components: [
+        {
+          name: "MyFoo",
+          componentUrl: "https://example.com/components",
+          target: "#hello",
+          source: ".foo",
+        },
+        {
+          name: ".bar",
+          componentUrl: "https://example.com/components",
+          target: ".bar",
+          source: ".bar",
+        },
+      ],
     });
   });
 
@@ -136,25 +160,33 @@ describe("fromJSON()", () => {
     const expected: Configuration = {
       patternLibUrl: "https://example.com/components",
       patternLibHeaders: {
-        "DNT": "1"
+        DNT: "1",
       },
-      patternLibCookies: [{
-        name: "Hello",
-        value: "42",
-        expires: 9000,
-        sameSite: "Lax"
-      }],
+      patternLibCookies: [
+        {
+          name: "Hello",
+          value: "42",
+          expires: 9000,
+          sameSite: "Lax",
+        },
+      ],
       theme: {
         themeUrl: "https://example.com/components",
         colors: {
           colorsUrl: "https://example.com/components",
           sources: ".swatch",
-          properties: [ "background-color", "color" ],
+          properties: ["background-color", "color"],
         },
         typography: {
           typographyUrl: "https://example.com/components",
           sources: ".typo",
-          properties: [ "font-family", "font-size", "font-style", "font-weight", "color" ],
+          properties: [
+            "font-family",
+            "font-size",
+            "font-style",
+            "font-weight",
+            "color",
+          ],
         },
         icons: {
           iconsUrl: "https://example.com/components",
@@ -165,49 +197,76 @@ describe("fromJSON()", () => {
       utils: {
         utilsUrl: "https://example.com/components",
         sources: [
-          { type: "rule", selector: ".align-left", name: ".align-left", components: [] },
-          { type: "rule", selector: ".align-right", name: "Right", components: [ ".bar" ] },
-          { type: "element", selector: ".shadow", name: ".shadow", components: [] },
+          {
+            type: "rule",
+            selector: ".align-left",
+            name: ".align-left",
+            components: [],
+          },
+          {
+            type: "rule",
+            selector: ".align-right",
+            name: "Right",
+            components: [".bar"],
+          },
+          {
+            type: "element",
+            selector: ".shadow",
+            name: ".shadow",
+            components: [],
+          },
         ],
       },
-      breakpoints: [ 800, 1000 ],
-      components: [{
-        name: "MyFoo",
-        componentUrl: "https://example.com/components",
-        target: "#hello",
-        source: ".foo",
-      }, {
-        name: ".bar",
-        componentUrl: "https://example.com/components",
-        target: ".bar",
-        source: ".bar",
-      }],
+      breakpoints: [800, 1000],
+      components: [
+        {
+          name: "MyFoo",
+          componentUrl: "https://example.com/components",
+          target: "#hello",
+          source: ".foo",
+        },
+        {
+          name: ".bar",
+          componentUrl: "https://example.com/components",
+          target: ".bar",
+          source: ".bar",
+        },
+      ],
     };
     expect(fromJSON(input)).toEqual(expected);
     expect(fromJSON(JSON.stringify(fromJSON(input)))).toEqual(expected);
   });
 
   it("expodes on empty input syntax errors for invalid input", () => {
-    expect( () => fromJSON(null as any) ).toThrow(jasmine.objectContaining({
-      name: "MalformedConfigError",
-      message: "Input must be a JSON-encoded string, got null",
-    }));
-    expect( () => fromJSON(undefined as any) ).toThrow(jasmine.objectContaining({
-      name: "MalformedConfigError",
-      message: "Input must be a JSON-encoded string, got undefined",
-    }));
-    expect( () => fromJSON(``) ).toThrow(jasmine.objectContaining({
-      name: "MalformedConfigError",
-      message: "Input string is empty",
-    }));
-    expect( () => fromJSON(`  `) ).toThrow(jasmine.objectContaining({
-      name: "MalformedConfigError",
-      message: "Input string is empty",
-    }));
+    expect(() => fromJSON(null as any)).toThrow(
+      jasmine.objectContaining({
+        name: "MalformedConfigError",
+        message: "Input must be a JSON-encoded string, got null",
+      })
+    );
+    expect(() => fromJSON(undefined as any)).toThrow(
+      jasmine.objectContaining({
+        name: "MalformedConfigError",
+        message: "Input must be a JSON-encoded string, got undefined",
+      })
+    );
+    expect(() => fromJSON(``)).toThrow(
+      jasmine.objectContaining({
+        name: "MalformedConfigError",
+        message: "Input string is empty",
+      })
+    );
+    expect(() => fromJSON(`  `)).toThrow(
+      jasmine.objectContaining({
+        name: "MalformedConfigError",
+        message: "Input string is empty",
+      })
+    );
   });
 
   it("throws syntax errors for invalid input", () => {
-    expect( () => fromJSON(`{{}`) ).toThrow(jasmine.objectContaining({ name: "MalformedConfigError" }));
+    expect(() => fromJSON(`{{}`)).toThrow(
+      jasmine.objectContaining({ name: "MalformedConfigError" })
+    );
   });
-
 });
