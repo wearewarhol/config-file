@@ -54,6 +54,7 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
 
 ## Notable revisions
 
+* **v9.0.0**: new fields `patternLibHeaders` and `patternLibHeaders`
 * **v8.0.0**: `name` on components and utils no longer defaults to `null` but rather to `source` and `selector` respectively, fixing [#10](https://github.com/wearewarhol/config-file/issues/10)
 
 ## Schema
