@@ -155,7 +155,7 @@
     "patternLibHeaders": {
       "description": "Headers to set when accessing the pattern library",
       "type": [ "object", "null" ],
-      "propertyNames": {
+      "additionalProperties": {
         "type": "string"
       }
     },

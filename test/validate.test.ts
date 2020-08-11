@@ -32,7 +32,7 @@ describe("schema validation", () => {
     }) ).not.toThrow();
   });
 
-  it("does not accept an object with additional properties", () => {
+  it("rejects an object with additional properties", () => {
     expect( () => fromObject({
       foo: 42,
       patternLibUrl: null,
