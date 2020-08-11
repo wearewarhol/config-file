@@ -4,9 +4,10 @@ import { enumerate, Parameter } from "@warhol/utilities";
 import { NonsensicalConfigError } from "./errors";
 import { withDefaults } from "./defaults";
 
-export const checkSanity = (
-  { utils, components }: Parameter<typeof withDefaults, 0>,
-): void => {
+export const checkSanity = ({
+  utils,
+  components,
+}: Parameter<typeof withDefaults, 0>): void => {
   if (!utils) {
     return;
   }
@@ -15,17 +16,17 @@ export const checkSanity = (
       continue;
     }
     for (const componentTarget of util.components) {
-      const componentMatch = (components)
-        ? components.find( ({ source, target = source }) => {
-          return componentTarget === target;
-        }) : null;
+      const componentMatch = components
+        ? components.find(({ source, target = source }) => componentTarget === target) // eslint-disable-line
+        : null;
       if (!componentMatch) {
         const utilName = util.name || util.selector;
-        const restiction = enumerate(util.components);
-        const message = `The ${ util.type } utility "${ utilName }" is ` +
-                        `restricted to the component(s) ${ restiction }, ` +
-                        `but no component with the target selector ` +
-                        `${ componentTarget } is defined in the configuration`;
+        const restriction = enumerate(util.components);
+        const message =
+          `The ${util.type} utility "${utilName}" is ` +
+          `restricted to the component(s) ${restriction}, ` +
+          `but no component with the target selector ` +
+          `${componentTarget} is defined in the configuration`;
         throw new NonsensicalConfigError(message);
       }
     }

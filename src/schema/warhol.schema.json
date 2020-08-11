@@ -152,6 +152,49 @@
       "type": [ "string", "null" ],
       "format": "uri"
     },
+    "patternLibHeaders": {
+      "description": "Headers to set when accessing the pattern library",
+      "type": [ "object", "null" ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "patternLibCookies": {
+      "description": "Cookies to set when accessing the pattern library",
+      "type": [ "array", "null" ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "expires": {
+            "type": "integer"
+          },
+          "httpOnly": {
+            "type": "boolean"
+          },
+          "secure": {
+            "type": "boolean"
+          },
+          "sameSite": {
+            "type": "string",
+            "enum": [ "Strict", "Lax" ]
+          }
+        },
+        "required": [ "name", "value" ],
+        "additionalProperties": false
+      }
+    },
     "breakpoints": {
       "description": "The screen widths with which to take snapshots",
       "type": [ "array", "null" ],

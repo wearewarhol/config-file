@@ -6,7 +6,7 @@ import { MalformedConfigError } from "./errors";
 export const fromJSON = (input: string): Configuration => {
   if (typeof input !== "string") {
     const type = input === null ? "null" : typeof input;
-    const message = `Input must be a JSON-encoded string, got ${ type }`;
+    const message = `Input must be a JSON-encoded string, got ${type}`;
     throw new MalformedConfigError(message);
   }
   if (input.trim().length === 0) {
