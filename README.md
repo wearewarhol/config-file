@@ -10,6 +10,12 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
   "patternLibHeaders": {
     "DNT": "1"
   },
+  "patternLibCookies": [{
+    "name": "Hello",
+    "value": "42",
+    "expires": 9000,
+    "sameSite": "Lax"
+  }],
   "breakpoints": [
     1280, 1024, 800, 400, 280
   ],
@@ -62,6 +68,25 @@ themes) *must* provide their own URLs.
 ### Field `patternLibUrlHeaders` (optional, `Record<string, string>` or `null`, defaults to `{}`)
 
 Header to set when accessing the pattern library.
+
+### Field `patternLibUrlCookies` (optional, `Cookie` or `null`, defaults to `[]`)
+
+Cookies to set when accessing the pattern library. Cookie object type:
+
+```typescript
+type Cookie = {
+  name: string;
+  value: string;
+  path?: string;
+  domain?: string;
+  expires?: number;
+  httpOnly?: boolean;
+  secure?: boolean;
+  sameSite?: "Lax" | "Strict";
+};
+```
+
+Not that the JSON schema requires the number in `expires` to be an integer.
 
 ### Field `breakpoints` (optional, `number[]` or `null`, defaults to `[ 1000 ]`)
 

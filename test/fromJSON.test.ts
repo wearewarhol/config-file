@@ -9,6 +9,12 @@ describe("fromJSON()", () => {
       "patternLibHeaders": {
         "DNT": "1"
       },
+      "patternLibCookies": [{
+        "name": "Hello",
+        "value": "42",
+        "expires": 9000,
+        "sameSite": "Lax"
+      }],
       "breakpoints": [ 800, 1000 ],
       "components": [
         { "source": ".foo", "target": "#hello", "name": "MyFoo" },
@@ -41,6 +47,12 @@ describe("fromJSON()", () => {
       patternLibHeaders: {
         "DNT": "1"
       },
+      patternLibCookies: [{
+        name: "Hello",
+        value: "42",
+        expires: 9000,
+        sameSite: "Lax"
+      }],
       theme: {
         themeUrl: "https://example.com/components",
         colors: {
@@ -88,6 +100,12 @@ describe("fromJSON()", () => {
       "patternLibHeaders": {
         "DNT": "1"
       },
+      "patternLibCookies": [{
+        "name": "Hello",
+        "value": "42",
+        "expires": 9000,
+        "sameSite": "Lax"
+      }],
       "breakpoints": [ 800, 1000 ],
       "components": [
         { "source": ".foo", "target": "#hello", "name": "MyFoo" },
@@ -120,6 +138,12 @@ describe("fromJSON()", () => {
       patternLibHeaders: {
         "DNT": "1"
       },
+      patternLibCookies: [{
+        name: "Hello",
+        value: "42",
+        expires: 9000,
+        sameSite: "Lax"
+      }],
       theme: {
         themeUrl: "https://example.com/components",
         colors: {

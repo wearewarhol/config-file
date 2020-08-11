@@ -8,6 +8,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -20,6 +21,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -35,6 +37,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -61,6 +64,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -87,6 +91,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -117,6 +122,7 @@ describe("fromObject()", () => {
       patternLibHeaders: {
         "DNT": "1"
       },
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -142,6 +148,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -162,6 +169,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://example.com",
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -191,6 +199,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: null,
       utils: null,
       breakpoints: [ 1000 ],
@@ -216,6 +225,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: {
@@ -247,6 +257,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: {
         themeUrl: "https://example.com/patternlib/theme",
         colors: {
@@ -276,6 +287,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -307,6 +319,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: {
         themeUrl: "https://example.com/patternlib/theme",
         colors: null,
@@ -336,6 +349,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -366,6 +380,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: null,
       patternLibHeaders: {},
+      patternLibCookies: [],
       theme: {
         themeUrl: "https://asdf.com/theme",
         colors: null,
@@ -423,6 +438,7 @@ describe("fromObject()", () => {
     expect(fromObject(input)).toEqual({
       patternLibUrl: "https://warhol.io/components",
       patternLibHeaders: {},
+      patternLibCookies: [],
       breakpoints: [ 300, 800, 1200 ],
       theme: {
         themeUrl: "https://warhol.io/components/theme",
@@ -505,6 +521,7 @@ describe("fromObject()", () => {
     const expected: Configuration = {
       patternLibUrl: "https://warhol.io/components",
       patternLibHeaders: {},
+      patternLibCookies: [],
       breakpoints: [ 300, 800, 1200 ],
       theme: {
         themeUrl: "https://warhol.io/components/theme",

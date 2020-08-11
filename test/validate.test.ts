@@ -10,6 +10,7 @@ describe("schema validation", () => {
     expect( () => fromObject({
       patternLibUrl: null,
       patternLibHeaders: null,
+      patternLibCookies: null,
       breakpoints: null,
       theme: null,
       components: null,

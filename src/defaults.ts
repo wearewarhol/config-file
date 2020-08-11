@@ -12,6 +12,7 @@ import {
   ThemeIconsConfiguration,
   UtilsConfiguration,
   Util,
+  Cookie,
 } from "./types";
 
 // Each of the sub properties of theme configuration is optional, nullable and
@@ -142,16 +143,17 @@ type MinimalComponentConfig = Optional<
 export const withDefaults = (input: {
   patternLibUrl?: string | null,
   patternLibHeaders?: Record<string, string> | null,
+  patternLibCookies?: Cookie[] | null,
   breakpoints?: number[] | null,
   theme?: MinimalThemeConfig,
   utils?: MinimalUtilsConfig,
   components?: MinimalComponentConfig[] | null,
 }): Configuration => {
   const patternLibUrl = input.patternLibUrl || null;
-  const patternLibHeaders = input.patternLibHeaders || {};
   return {
     patternLibUrl,
-    patternLibHeaders,
+    patternLibHeaders: input.patternLibHeaders || {},
+    patternLibCookies: input.patternLibCookies || [],
     breakpoints: input.breakpoints || [ 1000 ],
     theme: themeWithDefaults(input.theme, patternLibUrl),
     utils: utilsWithDefaults(input.utils, patternLibUrl),

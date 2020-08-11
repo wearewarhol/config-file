@@ -42,9 +42,21 @@ export type UtilsConfiguration = {
   sources: Util[];
 } | null;
 
+export type Cookie = {
+  name: string;
+  value: string;
+  path?: string;
+  domain?: string;
+  expires?: number;
+  httpOnly?: boolean;
+  secure?: boolean;
+  sameSite?: "Lax" | "Strict";
+};
+
 export type Configuration = {
   patternLibUrl: string | null;
   patternLibHeaders: Record<string, string>;
+  patternLibCookies: Cookie[];
   breakpoints: number[];
   components: ComponentConfiguration[];
   theme: ThemeConfiguration;
