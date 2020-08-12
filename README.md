@@ -14,6 +14,7 @@ defaults. The file schema is specified in `warhol.schema.json`. An example:
     "name": "Hello",
     "value": "42",
     "expires": 9000,
+    "domain": "foo.com",
     "sameSite": "Lax"
   }],
   "breakpoints": [
@@ -79,6 +80,7 @@ type Cookie = {
   name: string;
   value: string;
   path?: string;
+  url?: string;
   domain?: string;
   expires?: number;
   httpOnly?: boolean;
@@ -87,7 +89,9 @@ type Cookie = {
 };
 ```
 
-Not that the JSON schema requires the number in `expires` to be an integer.
+Not that the JSON schema requires the number in `expires` to be an integer and
+that it also requires either `url` or `domain` to be defined, even though both
+are optional properties on the resulting output type.
 
 ### Field `breakpoints` (optional, `number[]` or `null`, defaults to `[ 1000 ]`)
 

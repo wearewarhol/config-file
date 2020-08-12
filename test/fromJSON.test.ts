@@ -10,6 +10,7 @@ describe("fromJSON()", () => {
       "patternLibCookies": [{
         "name": "Hello",
         "value": "42",
+        "domain": "example.com",
         "expires": 9000,
         "sameSite": "Lax"
       }],
@@ -50,6 +51,7 @@ describe("fromJSON()", () => {
           name: "Hello",
           value: "42",
           expires: 9000,
+          domain: "example.com",
           sameSite: "Lax",
         },
       ],
@@ -128,6 +130,7 @@ describe("fromJSON()", () => {
         "name": "Hello",
         "value": "42",
         "expires": 9000,
+        "domain": "example.com",
         "sameSite": "Lax"
       }],
       "breakpoints": [ 800, 1000 ],
@@ -167,6 +170,7 @@ describe("fromJSON()", () => {
           name: "Hello",
           value: "42",
           expires: 9000,
+          domain: "example.com",
           sameSite: "Lax",
         },
       ],

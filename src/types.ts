@@ -46,6 +46,7 @@ export type CookieConfiguration = {
   name: string;
   value: string;
   path?: string;
+  url?: string;
   domain?: string;
   expires?: number;
   httpOnly?: boolean;

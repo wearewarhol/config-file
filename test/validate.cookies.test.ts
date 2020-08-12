@@ -14,6 +14,39 @@ describe("schema validation", () => {
     ).toThrow();
   });
 
+  it("rejects when a cookie is missing either a domain or a url", () => {
+    expect(() =>
+      fromObject({
+        patternLibUrl: null,
+        patternLibCookies: [{ name: "test", value: "42" }],
+        breakpoints: null,
+        theme: null,
+        components: null,
+        utils: null,
+      } as any)
+    ).toThrow();
+    expect(() =>
+      fromObject({
+        patternLibUrl: null,
+        patternLibCookies: [{ name: "test", value: "42", url: "http://x.com" }],
+        breakpoints: null,
+        theme: null,
+        components: null,
+        utils: null,
+      } as any)
+    ).not.toThrow();
+    expect(() =>
+      fromObject({
+        patternLibUrl: null,
+        patternLibCookies: [{ name: "test", value: "42", domain: "foo.com" }],
+        breakpoints: null,
+        theme: null,
+        components: null,
+        utils: null,
+      } as any)
+    ).not.toThrow();
+  });
+
   it("rejects when a cookie is missing a name", () => {
     expect(() =>
       fromObject({
@@ -21,6 +54,7 @@ describe("schema validation", () => {
         patternLibCookies: [
           {
             value: "42",
+            domain: "foo.com",
           },
         ],
         breakpoints: null,
@@ -39,6 +73,7 @@ describe("schema validation", () => {
           {
             name: "hello",
             value: 42,
+            domain: "foo.com",
           },
         ],
         breakpoints: null,
@@ -57,6 +92,7 @@ describe("schema validation", () => {
           {
             name: "hello",
             value: "42",
+            domain: "foo.com",
             sameSite: "Foobar",
           },
         ],
@@ -76,6 +112,7 @@ describe("schema validation", () => {
           {
             name: "hello",
             value: "42",
+            domain: "foo.com",
             expires: 9000.1,
           },
         ],
