@@ -89,7 +89,7 @@ type Cookie = {
 };
 ```
 
-Not that the JSON schema requires the number in `expires` to be an integer and
+Note that the JSON schema requires the number in `expires` to be an integer and
 that it also requires either `url` or `domain` to be defined, even though both
 are optional properties on the resulting output type.
 
